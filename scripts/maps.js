@@ -908,5 +908,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   ];
 
-  // mapboxGL(map1Config, map1Locations);
+  mapboxGL(map1Config, map1Locations);
 });
