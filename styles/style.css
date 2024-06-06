@@ -135,6 +135,41 @@ body {
   color: var(--text-colour);
 }
 
+.media_placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid coral;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin-bottom: var(--space--medium);
+}
+
+.float_left {
+  width: 50%;
+  float: left;
+  margin-right: 15px;
+}
+.float_right {
+  width: 50%;
+  float: right;
+  margin-left: 15px;
+}
+
+@media only screen and (max-width: 599px) {
+  .float_left {
+    width: 100%;
+    float: center;
+    margin-right: 0;
+  }
+  .float_right {
+    width: 100%;
+    float: center;
+    margin-left: 0;
+  }
+}
+
 .block_content {
   margin-inline: auto;
   width: var(--clamp-base);
@@ -166,9 +201,6 @@ body {
   display: block;
   width: fit-content;
 }
-.title_section {
-  position: relative;
-}
 
 .intro_text {
   height: 100vh !important;
@@ -181,25 +213,6 @@ body {
   margin: 0 !important;
 }
 
-.legendEl {
-  /* position: absolute; */
-  --width: 30vw;
-  margin: 0;
-  z-index: 999;
-  display: block;
-  width: 30vw;
-  height: 30vw;
-  min-width: 300px;
-  min-height: 300px;
-  border: 3px #00000080 dashed;
-  border-radius: 100vw;
-  top: calc(50% - var(--width) / 2);
-  left: calc(50% - var(--width) / 2);
-  transform-origin: center;
-  animation: rotation 100s infinite linear;
-  /* transform: translate(-50%, -50%); */
-}
-
 @keyframes rotation {
   from {
     rotate: 0deg;
@@ -208,13 +221,13 @@ body {
     rotate: 360deg;
   }
 }
+
 .title_wrapper {
   padding-block: 20px;
   background-color: #00000095;
-  top: 75%;
+  bottom: clamp(100px, 20%, 200px);
   left: 50%;
-  transform: translate(-50%, -50%);
-  /* inset: 60% 0; */
+  transform: translate(-50%, 0);
   z-index: 999;
   width: 100%;
   height: max-content;
@@ -223,6 +236,16 @@ body {
 
 .title_wrapper p {
   padding: 0 !important;
+}
+
+.date {
+  position: fixed;
+  z-index: 999;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 150px;
+  opacity: 0.2;
 }
 
 .title_media {
@@ -420,11 +443,15 @@ aside h2 {
   }
 
   .title {
-    font-size: var(--font-size--xl3);
+    font-size: var(--font-size--xl2);
   }
 
   .standfirst {
-    font-size: var(--font-size--medium);
+    font-size: var(--font-size--base);
+  }
+
+  .date {
+    font-size: 80px;
   }
 
   figcaption {
