@@ -24,14 +24,28 @@
 
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/map.css" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/pinning.css" />
+    <link rel="stylesheet" href="./styles/tc-header-footer.css" />
+
+    <!-- D3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
     <script src="https://unpkg.com/topojson-simplify@3"></script>
+
+    <!-- Lazyload images and videos -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.8/dist/lazyload.min.js"></script>
+
+    <!-- Mapbox -->
+    <link href="./styles/mapbox-gl.css" rel="stylesheet" />
+    <script src="./scripts/mapbox-gl.js"></script>
+
+    <!-- Scripts -->
+    <script src="./scripts/maps.js"></script>
     <script src="./scripts/main.js"></script>
   </head>
   <body>
@@ -45,6 +59,8 @@
               aria-label="The Conversation homepage"
               ><svg
                 class="tc_header_logo full_logo"
+                height="30px"
+                width="100%"
                 viewBox="0 0 264 25"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +76,8 @@
                   fill="#fff"></path></svg
               ><svg
                 class="tc_header_logo stacked_logo"
+                height="30px"
+                width="100%"
                 viewBox="0 0 67 37"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -99,82 +117,484 @@
     </header>
 
     <article>
-      <h1 class="block_content article_title">Slave scam-centres</h1>
-      <h2 class="block_content basic_margin article_teaser">
-        A global network of scammers have developed a modern slave trade, taking
-        people and forcing them to work in call centres across south-east Asia.
-        We've been tracking them for years.
-      </h2>
-      <p class="block_content title_authors">
-        By
-        <a
-          href="https://theconversation.com/profiles/ivan-franceschini-1529038"
-          target="_blank"
-          >Ivan Franceschini</a
-        >
-        and
-        <a
-          href="https://theconversation.com/profiles/ling-li-1529042"
-          target="_blank"
-          >Ling Li</a
-        >
-      </p>
-      <p class="block_content basic_margin publish_date">
-        Published: May 3, 2024 at 5pm AEST
-      </p>
-      <figure class="block_content basic_margin title_media">
-        <div class="globe_wrapper"></div>
-      </figure>
+      <div class="pinned_section pin_clipped">
+        <div class="pinned_media">
+          <figure class="title_media">
+            <p
+              class="date"
+              style="position: fixed; z-index: 999; bottom: 0; left: 10px">
+              2017
+            </p>
+            <div>
+              <img
+                src="./assets/pics/Yatai New City 201710.webp"
+                alt=""
+                data-date="2017" />
+              <img
+                src="./assets/pics/Yatai New City 201711.webp"
+                alt=""
+                data-date="2017" />
+              <img
+                src="./assets/pics/Yatai New City 201809.webp"
+                alt=""
+                data-date="2018" />
+              <img
+                src="./assets/pics/Yatai New City 201811.webp"
+                alt=""
+                data-date="2018" />
+              <img
+                src="./assets/pics/Yatai New City 201904.webp"
+                alt=""
+                data-date="2019" />
+              <img
+                src="./assets/pics/Yatai New City 201911-1.webp"
+                alt=""
+                data-date="2019" />
+              <img
+                src="./assets/pics/Yatai New City 201911-2.webp"
+                alt=""
+                data-date="2019" />
+              <img
+                src="./assets/pics/Yatai New City 202101.webp"
+                alt=""
+                data-date="2021" />
+              <img
+                src="./assets/pics/Yatai New City 202104.webp"
+                alt=""
+                data-date="2021" />
+              <img
+                src="./assets/pics/Yatai New City 202201.webp"
+                alt=""
+                data-date="2022" />
+              <img
+                src="./assets/pics/Yatai New City 202212.webp"
+                alt=""
+                data-date="2022" />
+            </div>
+          </figure>
+        </div>
+        <div class="pinned_text intro_text">
+          <div class="title_wrapper" style="margin: 0 !important">
+            <h1 class="block_content title">Slave scam-centres</h1>
+            <h2 class="block_content standfirst">
+              A global network of scammers have developed a modern slave trade,
+              taking people and forcing them to work in call centres across
+              south-east Asia. We've been tracking them for years.
+            </h2>
+            <p class="block_content title_authors">
+              By
+              <a
+                class="body_link"
+                href="https://theconversation.com/profiles/ivan-franceschini-1529038"
+                target="_blank"
+                >Ivan Franceschini</a
+              >
+              and
+              <a
+                class="body_link"
+                href="https://theconversation.com/profiles/ling-li-1529042"
+                target="_blank"
+                >Ling Li</a
+              >
+            </p>
+            <p class="block_content basic_margin publish_date">
+              Published: May 3, 2024 at 5pm AEST
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <p class="block_content basic_margin">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti
-        quidem tempore quis impedit quibusdam asperiores animi officia
-        accusantium perspiciatis. Unde quasi velit tempore minima nesciunt
-        reiciendis ex possimus voluptatem fugit! Similique suscipit culpa ipsum
-        vel ratione necessitatibus ut deserunt nemo enim, eum, minus magnam,
-        libero id dolorum in cum dolor.
-      </p>
-      <p class="block_content basic_margin">
-        Velit, ullam. Dolorum atque corporis modi! Deleniti dolor, cupiditate
-        cumque asperiores laboriosam molestiae quaerat officiis inventore earum.
-        Ipsa, ut nihil earum modi voluptate corporis atque! Reiciendis sint
-        accusantium ducimus minima, quas eligendi quibusdam ratione ullam. Nulla
-        maxime animi voluptatibus rerum velit, ad, inventore consectetur,
-        molestias hic nam laborum recusandae cupiditate?
-      </p>
-      <p class="block_content basic_margin">
-        Voluptates ratione iste sequi repellat repudiandae similique! Tempora
-        culpa et voluptates, nemo, ipsa magni, in expedita veritatis reiciendis
-        omnis alias! Hic ratione nisi vitae necessitatibus voluptate repellat
-        sit nihil, minus quis sunt dignissimos aperiam velit ex aliquid modi
-        fuga nam doloremque dicta error aut, labore enim. Animi dolor quae
-        quibusdam!
-      </p>
+      <div class="pinned_section pin_block basic_margin map1">
+        <div class="pinned_media">
+          <div id="map1_mapInset" class="mapInset"></div>
+          <div id="map1"></div>
+        </div>
+        <div class="pinned_text block_content">
+          <p class="pinned_content">
+            In late 2023, Yun and Pei (pseudonyms), two young people from
+            China’s Sichuan Province, were scrolling Kuaishou, a popular Chinese
+            live-video platform, when they noticed what looked like a promising
+            opportunity.
+          </p>
+          <p class="map_step pinned_content">
+            Barely 17 and 20, they were scraping a living on construction sites
+            around their hometown, and here was a job that promised to pay a
+            daily wage that was nearly double what they were earning, plus food
+            and lodging.
+          </p>
+          <p class="map_step pinned_content">
+            After receiving a first positive response, they embarked on a
+            journey to a coastal city in Guangxi Province for an interview in
+            person. There, their enthusiasm quickly turned to fear, as the
+            supposed prospective employer resorted to threats of violence to
+            coerce them onto a boat.
+          </p>
+          <p class="map_step pinned_content">
+            Within half an hour they were in Vietnam, where they spent a couple
+            of days under guard in a hotel before being transported by car to
+            Bavet, a Cambodian border town.
+          </p>
+          <p class="map_step pinned_content">
+            In Bavet, they were brought to a compound known for hosting both
+            online gambling and cyber-fraud operations and told that they would
+            have to engage in online scams.
+          </p>
+          <p class="pinned_content">
+            Unwilling, the two youths tried to escape but got caught by security
+            guards and beaten badly. After spending several days locked up
+            inside the dormitory, they agreed to learn scam techniques.
+          </p>
+          <p class="pinned_content">
+            Moved to another compound to be trained, in a strike of luck, they
+            managed to contact relatives back in China, who promptly reported to
+            authorities in China and the Chinese Embassy in Cambodia.
+          </p>
+          <p class="map_step pinned_content">
+            Finally, in January of this year, they were rescued by Cambodian
+            police.
+          </p>
+        </div>
+      </div>
 
-      <h2 class="block_content basic_margin">A sub heading goes here</h2>
-      <p class="block_content basic_margin">
-        At, sapiente dolore delectus repudiandae cupiditate nam, eum magni
-        exercitationem quod atque facilis? Vero nihil aliquid commodi saepe
-        tenetur, magni quia, quo officiis fugiat iusto accusantium eum molestias
-        voluptas error dicta sit rem perferendis minima neque eveniet facilis?
-        Temporibus nihil, qui excepturi odio obcaecati totam recusandae
-        blanditiis reprehenderit dignissimos iusto?
-      </p>
-      <p class="block_content basic_margin">
-        Sit nesciunt quaerat odit nihil nobis? Magni, sit odio aspernatur
-        eveniet optio reiciendis accusamus facere quaerat quo consectetur ad
-        laboriosam officia saepe? Voluptatibus iusto odio asperiores fugit
-        officiis velit provident adipisci labore, quis, enim ex ratione dicta
-        sit eligendi consequuntur possimus voluptas praesentium nobis voluptate
-        suscipit ipsum modi tenetur harum?
-      </p>
+      <section class="block_content">
+        <h2 class="basic_margin sub_head">A story among many</h2>
+        <p class="basic_margin">
+          Over the past few years, we have come across hundreds of stories that
+          are just more or less tragic variations of this one. Individuals of
+          various backgrounds and nationalities find themselves trapped inside
+          compounds in Southeast Asia — mostly in Cambodia, Laos, Myanmar, and
+          the Philippines — where they are trained in various scam techniques
+          and then forced to defraud people all over the world.
+        </p>
+        <p class="basic_margin">
+          Some of them are there after being duped or drafted against their
+          will, prevented from leaving, subjected to round-the-clock
+          surveillance, and disciplined through the constant threat of arbitrary
+          physical violence.
+        </p>
+        <p class="basic_margin">
+          Others might have entered willingly but they too find themselves
+          trapped, either through threats of violence or demands for exorbitant
+          fees to break dubious contracts they are required to sign on arrival.
+        </p>
+        <p class="basic_margin">
+          Passports and other documents are taken away upon entrance, which
+          means that they are effectively stranded in a foreign country where
+          they most often don’t know anyone nor speak the language.
+        </p>
+        <p class="basic_margin">
+          The way it has taken shape in the past few years, the online scam
+          industry is unique in that it presents us with two distinct, seldom
+          overlapping sets of victims.
+        </p>
+
+        <p class="basic_margin">
+          On one side are the targets of the scams, who often lose the savings
+          of a lifetime and go through horrible psychological suffering, an
+          ordeal that leaves them with their sense of self-worth in tatters and,
+          in some cases, on the brink of suicide. **JB: stats on how much has
+          been lost globally due to scams in most recent year**
+        </p>
+
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          chart: global losses to scams
+        </div>
+
+        <p class="basic_margin">
+          On the other side, somehow surprisingly, are some of the scammers
+          themselves, people like Yun and Pei, who end up working in scam
+          operations in conditions akin to modern slavery after getting tricked
+          or trafficked.
+        </p>
+
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          chart: trafficking to scams
+        </div>
+
+        <p class="basic_margin">
+          It is with this latter cohort — which tentative UN estimates put in
+          the hundreds of thousands in Southeast Asia alone — that we have been
+          engaging in the past few years as we attempted to shed light into the
+          inner workings of the online scam industry.
+        </p>
+      </section>
+
+      <section class="block_content">
+        <h2 class="sub_head">Who are we?</h2>
+        <p class="basic_margin">
+          The three of us come from different backgrounds. Ivan Franceschini and
+          Mark Bo have been observing Chinese investment in Southeast Asia,
+          especially Cambodia, since the early 2010s, Ivan researching issues
+          related to labour rights, and Mark with a focus on both political
+          dynamics and social and environmental impacts.
+        </p>
+        <p class="basic_margin">
+          As the online scam industry began to gain prominence in Cambodia
+          during and after the Covid-19 pandemic, and as Chinese-ethnic criminal
+          organisations played a fundamental role in it, it was unavoidable for
+          us to turn our attention to it.
+        </p>
+        <p class="basic_margin">
+          Ling Li instead comes from a background in the humanitarian industry
+          and has been intensively engaging with survivors of the online scam
+          industry since 2022, interacting with local and international civil
+          society organisations to bring them relief and supporting them with
+          repatriation. **JB: can we mention her former role in Chinese law
+          enforcement?**
+        </p>
+        <p class="basic_margin">
+          Now all the interviews and informal conversations that we have had
+          with survivors, members of informal rescue teams, civil society
+          practitioners, law enforcement, along with the wealth of information
+          that we have accumulated in years of observing the power networks and
+          money flows that underpin the industry, have gone into a book, Scam:
+          Inside Southeast Asia’s Cybercrime Industry, which will be published
+          by Verso Books in 2025.
+        </p>
+      </section>
+
+      <section class="block_content">
+        <h2 class="basic_margin sub_head">Rise of an Industry</h2>
+        <p class="basic_margin">
+          To understand where today’s online scam industry comes from, we need
+          to turn our gaze to Taiwan in the 1990s.
+        </p>
+
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          image: 1990s Taiwan
+        </div>
+        <!-- <figure class="standard_img">
+        <picture>
+          <img
+            src="./assets/DJI_0406.jpeg"
+            alt=""
+            style="object-position: left" />
+        </picture>
+        <figcaption>
+          <span class="caption"
+            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. At, nemo
+            quidem possimus omnis laboriosam unde!</span
+          >
+          <span class="attribution"
+            ><span class="source"
+              ><a href="#" class="clean_link">Source is here</a></span
+            ></span
+          >
+        </figcaption>
+      </figure> -->
+
+        <p class="basic_margin">
+          In the second half of the decade, pioneering scammers started
+          experimenting with some of the sophisticated techniques of online
+          fraud that we are still seeing today.
+        </p>
+
+        <div
+          class=""
+          style="
+            height: 350px;
+            width: 300px;
+            border: 1px solid coral;
+            float: left;
+            margin-right: 15px;
+          ">
+          image: scratch card example
+        </div>
+
+        <p class="basic_margin">
+          In one of the most notorious instances, local crime syndicates created
+          a popular scratch-card lottery in which lottery buyers were led to
+          believe they had won a prize and then asked them to pay taxes on their
+          winnings before collecting.
+        </p>
+        <p class="basic_margin">
+          As law enforcement in Taiwan became increasingly strict, starting from
+          the early 2000s the focus of the scammers turned to mainland China.
+          Online scam cases first made major headlines in China in 2004, with a
+          case involving a well-known retired professor from a university in
+          Beijing. After being scammed out of a significant amount of money for
+          a television set and laptop that he was told were a lottery prize, the
+          man sent a complaint to top leaders in the central government.
+        </p>
+        <p class="basic_margin">
+          This set in motion an investigation that eventually revealed that the
+          scammer was an 18-year-old woman in a county in Fujian Province called
+          Anxi.
+        </p>
+        <p class="basic_margin">
+          Around the same time, another high-profile online fraud case was
+          reported to the police, and the operator behind it also turned out to
+          be based in Anxi.
+        </p>
+        <p class="basic_margin">
+          This was the beginning of the county developing a reputation as a
+          "scam township" (zhapian zhi xiang). Suddenly, the place was receiving
+          huge attention not only from the Chinese media and public, but also
+          from law enforcement bodies.
+        </p>
+
+        <div
+          class=""
+          style="
+            height: 350px;
+            width: 300px;
+            border: 1px solid coral;
+            float: right;
+            margin-left: 15px;
+          ">
+          image: Chinese compound from 2004
+        </div>
+
+        <p class="basic_margin">
+          According to Chinese media reporting from that time, Anxi’s scam
+          operations worked on a family-based model, supplemented by the hiring
+          of external workers. These employees received either a fixed monthly
+          salary of 500 yuan or a commission ranging from 10 to 20% of the money
+          they generated. They were provided with food and accommodation,
+          usually in a sealed-window suite, a characteristic that eerily recalls
+          the situation of today’s scam compounds, even though we have no
+          evidence that these workers were coerced to perpetrate the scams they
+          engaged in.
+        </p>
+        <p class="basic_margin">
+          More broadly, these early operations already showed one landmark
+          characteristic of online scam operations, that is the fact that,
+          contrary to what many observers of the industry believe, they are
+          mostly run by smaller groups of entrepreneurial Chinese-ethnic
+          criminals, rather than "traditional" organised crime groups, such as
+          Hong Kong triads.
+        </p>
+        <p class="basic_margin">
+          These developments led to increasingly strict law enforcement on the
+          mainland. In the early 2010s, with scammers now having to find new
+          bases for their operations, Southeast Asia — especially Cambodia and
+          the Philippines — emerged as their destinations of choice.
+        </p>
+        <p class="basic_margin">
+          As they reviewed media and police reports of arrests and repatriations
+          of Chinese nationals suspected of online fraud, two Chinese scholars
+          were not able to locate any reports of large-scale arrests in
+          Southeast Asia before 2011, an indication that at that time the
+          industry had not taken roots in the region yet.
+        </p>
+        <p class="basic_margin">
+          They found a spike in arrests in the region only in 2015, in
+          concomitance with a renewed crackdown on online fraud in China.
+        </p>
+        <p class="basic_margin">
+          This gives us a glimpse of the main push factor that leads crime
+          groups to leave one location, that is, the need to escape regulatory
+          changes and police crackdowns.
+        </p>
+        <p class="basic_margin">
+          As for the pull side, scam operators are attracted by regulatory
+          voids, lax law enforcement, and existence of local elites and networks
+          willing to grant their protection. As Chinese-ethnic criminal groups
+          control many of these organisations, proximity to both Taiwan and
+          mainland China is helpful, so that the fraudsters can easily travel
+          back and forth and secure a steady supply of Chinese-speaking workers.
+        </p>
+        <p class="basic_margin">
+          It also helps if the destination has decent existing infrastructure,
+          especially in terms of internet connectivity, telecommunications, and
+          office space. This is the same type of infrastructure that is required
+          for online gambling, which explains why the online scam industry has
+          taken roots in country where online gambling is (or used to be)
+          legally allowed or tolerated as an informal source of revenue.
+        </p>
+      </section>
+
+      <section class="block_content">
+        <h2 class="sub_head">Zooming In</h2>
+        <p class="basic_margin">
+          The gambling-scam nexus is particularly evident in Cambodia and the
+          Philippines. In Cambodia, **where we have done the vast majority of
+          our research,** the government initially allowed online gambling but
+          then suddenly banned it in August 2019, citing public security
+          concerns linked to the industry.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          image: old casino?
+        </div>
+        <p class="basic_margin">
+          This move left behind a significant infrastructure ready for scammers
+          to use, especially in places like the coastal city of Sihanoukville,
+          which since 2017 had seen a significant influx of foreign investment
+          in the casino and entertainment industry, mostly coming from
+          Chinese-ethnic actors.
+        </p>
+        <p class="basic_margin">
+          In the Philippines, in 2016 the Duterte administration decided to
+          regulate the industry by establishing the ‘Philippine Offshore
+          Gambling Operations’ (POGO) scheme, a new policy that enabled online
+          gambling firms to legally set up shop in major cities. In the
+          following years, many of these POGOs turned out to be fronts for
+          online scam operations, leading to widespread calls from policymakers
+          to ban the program altogether.
+        </p>
+        <p class="basic_margin">
+          Myanmar presents a different picture. There, law from the 1980s
+          completely prohibited gambling of any sort in the country, and only in
+          2019 a new law permitted hotels of three stars and above to set up
+          gambling venues for foreigners.
+        </p>
+        <p class="basic_margin">
+          Still, despite the restrictions, some areas did develop casino
+          industries, particularly border areas administered by ethnic armed
+          organisations such as Kokang, Wa State, and Kayin State. However,
+          these regions are not all easily accessible, operation costs are
+          higher than elsewhere in mainland Southeast Asia, and conflict risks
+          high.
+        </p>
+        <p class="basic_margin">
+          In this environment, the online scam industry was likely attracted not
+          so much by the existing infrastructure provided by online gambling,
+          but rather by the opportunity to establish itself in places that are
+          in many regards lawless. These border areas are effectively ruled by
+          warlords often allied with the Myanmar military, who have for years
+          operated myriad criminal operations, many of which are transnational
+          in nature.
+        </p>
+        <p class="basic_margin">
+          The online scam industry experienced intense growth in northern and
+          eastern Myanmar in the wake of the 2021 military coup and in the wake
+          of a short-lived crackdown on the industry in Cambodia in late 2022,
+          but its future is now uncertain due to intense crackdowns started in
+          late 2023 by local actors in collaboration with Chinese law
+          enforcement.
+        </p>
+      </section>
+
+      <section class="block_content">
+        <h2 class="sub_head">Scaling Up</h2>
+        <p class="basic_margin">
+          Since the move to Southeast Asia, the online scam industry has grown
+          exponentially. Although they were already raking in impressive
+          profits, scam operators realised there was still much room for growth
+          — they just had to find ways to secure larger workforces and
+          supporting infrastructure to scale up their activities.
+        </p>
+        <p class="basic_margin">
+          While at the beginning scam operations were often small-scale and
+          mostly located in apartments, villas, and hotel rooms, in the late
+          2010s they began to coalesce into bigger scam compounds.
+        </p>
+      </section>
 
       <div class="pinned_section pin_clipped basic_margin">
         <div class="pinned_media">
           <figure>
             <picture>
               <img
-                src="./assets/DJI_0406.jpeg"
+                src="./assets/pics/DJI_0406.webp"
                 alt=""
                 style="object-position: left" />
             </picture>
@@ -182,216 +602,511 @@
           <figure>
             <picture>
               <img
-                src="./assets/1C6A2689.jpeg"
+                src="./assets/pics/1C6A2689.webp"
                 alt=""
                 style="object-position: left" />
             </picture>
           </figure>
         </div>
-        <div class="pinned_text">
-          <p class="block_content pinned_content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus pariatur, minus beatae sapiente molestias corporis
-            consequatur nobis delectus dolores sint aperiam officiis officia sit
-            numquam rerum? Quisquam quod temporibus est.
+        <div class="pinned_text block_content">
+          <p class="pinned_content">
+            These facilities in many cases are purpose-built for online
+            operations, with offices, dormitories, and space for shops,
+            entertainment, and other amenities for workers. In other cases, they
+            are office buildings attached to or in the vicinity of public-facing
+            casinos, or they may occupy the upper floors of a licensed casino.
+            In others again, they are repurposed condominiums and apartments.
           </p>
-          <p class="block_content pinned_content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus pariatur, minus beatae sapiente molestias corporis
-            consequatur nobis delectus dolores sint aperiam officiis officia sit
-            numquam rerum? Quisquam quod temporibus est.
+          <p class="step pinned_content">
+            By sharing infrastructure and facilities, scam operations have been
+            able to achieve an economy of scale. As they scaled up, scam
+            operations have also become more professional and are now run as
+            ‘proper’ companies, with various departments in charge of different
+            side of the business, such as recruitment, human resources,
+            logistics, and external contractors in charge of more technical
+            aspects, including money laundering.
           </p>
-          <p class="step block_content pinned_content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus pariatur, minus beatae sapiente molestias corporis
-            consequatur nobis delectus dolores sint aperiam officiis officia sit
-            numquam rerum? Quisquam quod temporibus est.
+          <p class="pinned_content">
+            **MG: We need to space out these pars to allow some more images,
+            also I think this is a good spot to put the satellite imagery**
           </p>
-          <p class="block_content pinned_content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus pariatur, minus beatae sapiente molestias corporis
-            consequatur nobis delectus dolores sint aperiam officiis officia sit
-            numquam rerum? Quisquam quod temporibus est.
+          <p class="pinned_content">
+            **JB: can we add some stats here on the size of the industry, how
+            many compounds are now in these countries, how many people are
+            believed to now work in them, how much profit, etc.?**
           </p>
         </div>
       </div>
 
-      <h2 class="block_content basic_margin">A sub heading goes here</h2>
-      <p class="block_content basic_margin">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti
-        quidem tempore quis impedit quibusdam asperiores animi officia
-        accusantium perspiciatis. Unde quasi velit tempore minima nesciunt
-        reiciendis ex possimus voluptatem fugit! Similique suscipit culpa ipsum
-        vel ratione necessitatibus ut deserunt nemo enim, eum, minus magnam,
-        libero id dolorum in cum dolor.
-      </p>
-      <p class="block_content basic_margin">
-        Velit, ullam. Dolorum atque corporis modi! Deleniti dolor, cupiditate
-        cumque asperiores laboriosam molestiae quaerat officiis inventore earum.
-        Ipsa, ut nihil earum modi voluptate corporis atque! Reiciendis sint
-        accusantium ducimus minima, quas eligendi quibusdam ratione ullam. Nulla
-        maxime animi voluptatibus rerum velit, ad, inventore consectetur,
-        molestias hic nam laborum recusandae cupiditate?
-      </p>
-      <p class="block_content basic_margin">
-        Voluptates ratione iste sequi repellat repudiandae similique! Tempora
-        culpa et voluptates, nemo, ipsa magni, in expedita veritatis reiciendis
-        omnis alias! Hic ratione nisi vitae necessitatibus voluptate repellat
-        sit nihil, minus quis sunt dignissimos aperiam velit ex aliquid modi
-        fuga nam doloremque dicta error aut, labore enim. Animi dolor quae
-        quibusdam!
-      </p>
-      <p class="block_content basic_margin">
-        At, sapiente dolore delectus repudiandae cupiditate nam, eum magni
-        exercitationem quod atque facilis? Vero nihil aliquid commodi saepe
-        tenetur, magni quia, quo officiis fugiat iusto accusantium eum molestias
-        voluptas error dicta sit rem perferendis minima neque eveniet facilis?
-        Temporibus nihil, qui excepturi odio obcaecati totam recusandae
-        blanditiis reprehenderit dignissimos iusto?
-      </p>
+      <section class="block_content">
+        <p class="basic_margin">
+          However, unlike companies in legitimate sectors, they exert strict
+          control over their workforce through round-the-clock surveillance
+          accompanied by a set of deterrents and inducements.
+        </p>
 
-      <h2 class="block_content basic_margin">A sub heading goes here</h2>
-      <p class="block_content basic_margin">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti
-        quidem tempore quis impedit quibusdam asperiores animi officia
-        accusantium perspiciatis. Unde quasi velit tempore minima nesciunt
-        reiciendis ex possimus voluptatem fugit! Similique suscipit culpa ipsum
-        vel ratione necessitatibus ut deserunt nemo enim, eum, minus magnam,
-        libero id dolorum in cum dolor.
-      </p>
-      <p class="block_content basic_margin">
-        Velit, ullam. Dolorum atque corporis modi! Deleniti dolor, cupiditate
-        cumque asperiores laboriosam molestiae quaerat officiis inventore earum.
-        Ipsa, ut nihil earum modi voluptate corporis atque! Reiciendis sint
-        accusantium ducimus minima, quas eligendi quibusdam ratione ullam. Nulla
-        maxime animi voluptatibus rerum velit, ad, inventore consectetur,
-        molestias hic nam laborum recusandae cupiditate?
-      </p>
-      <p class="block_content basic_margin">
-        Voluptates ratione iste sequi repellat repudiandae similique! Tempora
-        culpa et voluptates, nemo, ipsa magni, in expedita veritatis reiciendis
-        omnis alias! Hic ratione nisi vitae necessitatibus voluptate repellat
-        sit nihil, minus quis sunt dignissimos aperiam velit ex aliquid modi
-        fuga nam doloremque dicta error aut, labore enim. Animi dolor quae
-        quibusdam!
-      </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          chart: scam organisational structure
+        </div>
+
+        <p class="basic_margin">
+          On the stick side, there is a wide range of possible tortures, not
+          excluding death **more on the conditions/treatment here**.
+        </p>
+        <p class="basic_margin">
+          On the carrot side, there are bonuses and other financial rewards,
+          plus promises of access to drugs and sex in clubs and brothels located
+          inside the compounds.
+        </p>
+        <p class="basic_margin">
+          Many observers cite the Covid-19 pandemic as the factor that triggered
+          the whole scaling up of the online scam industry. While, as we have
+          seen, the transition started years before the virus made its
+          appearance, the pandemic undoubtedly acted as a catalyst.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          map: all found scam compounds
+        </div>
+        <p class="basic_margin">
+          The widespread baggage of misery caused by the health crisis and the
+          ensuing lockdowns and border closures provided the crime groups that
+          run scam operations with both a larger pool of isolated people
+          vulnerable to their frauds and an immiserated workforce willing to
+          believe any promise and accept any job to supplement their collapsing
+          livelihoods.
+        </p>
+      </section>
+
+      <section class="block_content basic_margin">
+        <h2 class="basic_margin sub_head">Types of Scams</h2>
+        <p class="basic_margin">
+          At the root of these scam operations are technological changes that
+          have made increasingly sophisticated frauds feasible.
+        </p>
+        <p class="basic_margin">
+          Southeast Asia’s scam compounds are generally associated with ‘pig
+          butchering’ (shazhupan) frauds, arguably the most well-known—and
+          widely studied—online scam method that has emerged in recent years.
+          **JB: Can we say who the targets of the SE Asia scam compounds
+          are--are they mostly going after people in mainland China and the
+          Chinese diaspora?**
+        </p>
+      </section>
+
+      <div class="pinned_section pin_block basic_margin">
+        <div class="pinned_media" style="mix-blend-mode: color-dodge">
+          <figure>
+            <picture>
+              <source
+                srcset="
+                  https://www.shutterstock.com/shutterstock/photos/2281837763/display_1500/stock-vector-set-of-pigs-hand-drawn-sketch-illustration-farming-2281837763.jpg
+                "
+                media="(min-width: 601px)" />
+              <source
+                srcset="
+                  https://www.shutterstock.com/image-vector/set-pigs-hand-drawn-sketch-260nw-2281837763.jpg
+                "
+                media="(max-width: 600px)" />
+              <img
+                style="object-position: right"
+                src="https://www.shutterstock.com/image-vector/set-pigs-hand-drawn-sketch-260nw-2281837763.jpg"
+            /></picture>
+          </figure>
+        </div>
+        <div class="pinned_text block_content">
+          <div class="pinned_content">
+            <p>
+              Sitting at the intersection of traditional romance and investment
+              scams, this technique generally entails four stages:
+            </p>
+            <ul>
+              <li>pig searching (zhao zhu)</li>
+              <li>pig feeding (wei zhu)</li>
+              <li>pig grooming (yang zhu)</li>
+              <li>pig slaughtering (sha zhu).</li>
+            </ul>
+          </div>
+
+          <p class="pinned_content">
+            First scammers create fake profiles and search for targets (the
+            ‘pigs’) on social media or via ‘wrong number’ messages. Then, once
+            they have found a target, they start grooming them by showing care,
+            sending gifts, and engaging in conversations that in some cases last
+            for months.
+          </p>
+          <p class="pinned_content">
+            Once the target is on the hook, the ‘pig-grooming period’ begins. At
+            that point, the scammers recommend fake investment products or steer
+            them to cryptocurrency or foreign exchange investment platforms that
+            often mimic legitimate apps and sites.
+          </p>
+          <p class="pinned_content">
+            The targets will be shown how to invest, and through the
+            scammer-controlled platforms, they will see their investment
+            steadily increase in value.
+          </p>
+          <p class="pinned_content">
+            ‘Pig-slaughtering’ often comes when victims want to cash out or
+            start to get suspicious. At this point, the scammers lock them out
+            of the app and vanish.
+          </p>
+        </div>
+      </div>
+
+      <section class="block_content basic_margin">
+        <p class="basic_margin">
+          A second common strategy has a long history even outside the
+          Chinese-speaking world and, contrarily to what some observers have
+          claimed, and is not linked to the specific political situation of
+          mainland China. This involves the impersonation of law enforcement
+          officials.
+        </p>
+        <p class="basic_margin">
+          For instance, one of our informants, a young Chinese graduate student
+          in the United Kingdom, one day received a call from someone claiming
+          to be from the Chinese Embassy in London who informed her that she was
+          in trouble and the Shanghai Municipal Public Security Bureau wanted
+          her cooperation.
+        </p>
+        <p class="basic_margin">
+          Wary, she checked the number that had popped up on her screen and it
+          matched that of the embassy. The call was transferred to a second
+          person claiming to be from the Shanghai police, who informed her that
+          she was among the suspects in a serious case involving forged
+          passports and money laundering. He warned her not to tell her family
+          or friends because anyone who knew about the situation could be
+          accused of harbouring criminals.
+        </p>
+        <p class="basic_margin">
+          Soon after, another alleged police officer contacted her on the app
+          Telegram, sent her what he claimed was an ‘arrest warrant’, and video
+          called her to collect her testimony.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          image/animaton: Telegram message
+        </div>
+        <p class="basic_margin">
+          For almost two months, she had to report her thoughts and activities
+          to this " "officer" every day. After she was completely subjugated and
+          dependent on him, he told her that if she wanted to prove her
+          innocence, she had to transfer RMB500,000 (roughly US$72,500) to a
+          designated "safe account" so that the police could escrow the money
+          until all suspicions about her were cleared. After she did so, the
+          scammers vanished.
+        </p>
+        <p class="basic_margin">
+          Pig butchering and official impersonation scams require not only
+          technological means, but also substantial investments in time and
+          manpower. These frauds are highly scripted, with prospective scammers
+          undergoing intensive training on how to use specific tools and
+          dedicated phrasebooks, which are said to be possibly elaborated by
+          professional psychologist and behavioural specialists.
+        </p>
+        <p class="basic_margin">
+          Other types of scams are more basic. In some cases, scammers lure
+          often inexperienced investors to put their money into buying or
+          exchanging cryptocurrencies on phoney platforms by offering
+          artificially high rates.
+        </p>
+        <p class="basic_margin">
+          In others, they flood dating apps with fake profiles, which are then
+          used to induce targets into participating in compromising intimate
+          chats or video calls.
+        </p>
+        <p class="basic_margin">
+          There are then the classic predatory loans and e-commerce scams that
+          involve offering products for low prices on mainstream online
+          marketplaces to entice victims.
+        </p>
+        <p class="basic_margin">
+          However, scammers can also be remarkably creative. For instance, over
+          the past couple of years, there have been reports of frauds targeting
+          Chinese students with a new bizarre technique. Scammers have been
+          convincing their targets that they or their family are under
+          investigation for financial crimes and persuade them to send them
+          photos and videos of themselves staging their own kidnapping. They
+          then use these materials to extort ransoms from their family members.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          image: Kidnapping pic
+        </div>
+        <p class="basic_margin">
+          For instance, in October 2022, two students in their early twenties
+          living in Singapore were contacted by fake police officers who said
+          they were under investigation for spreading misinformation, one about
+          monkeypox and the second about Covid-19 in Guangdong.
+        </p>
+        <p class="basic_margin">
+          They were told they would have to assist in investigations and
+          instructed to travel to Cambodia to conduct ‘missions’. Once in Phnom
+          Penh, they were told to stay in separate hotels, cease all
+          communication with family and friends, and record videos of themselves
+          pretending to be kidnapped for the purpose of scam education and
+          investigations.
+        </p>
+
+        <div
+          class=""
+          style="
+            height: auto;
+            aspect-ratio: 16/9;
+            width: 300px;
+            border: 1px solid coral;
+            float: left;
+            margin-right: 15px;
+          ">
+          Video: kidnapping (if possible)
+        </div>
+
+        <p class="basic_margin">
+          The fake kidnapping videos they filmed were sent to the parents with
+          ransom demands totalling RMB2.8 million (US$390,000). Cambodian police
+          located them before any ransoms were paid. **JB: are any of these
+          videos able to be shown?**
+        </p>
+        <p class="basic_margin">
+          Kidnappings are not always staged. In one horrific instance in the
+          summer of 2023, a 23-year-old Chinese student in New Zealand received
+          a call from the ‘Chinese consulate’ saying they had received a
+          complaint that someone was sending harassing texts from a phone number
+          registered with her ID.
+        </p>
+        <p class="basic_margin">
+          She was told to file a police report and transferred to the ‘Chinese
+          police department’.
+        </p>
+        <p class="basic_margin">
+          The fake police asked for her ID number and told her that there was a
+          file on her and that she was also being investigated in a
+          transnational money laundering case. The ‘police officer’ sent various
+          official-looking documents to her, including an arrest warrant. He
+          said that she could avoid investigation if she cooperated as a witness
+          and travelled to Cambodia to identify the people involved.
+        </p>
+        <p class="basic_margin">
+          After arriving in Cambodia, she was taken to a compound near the
+          border with Vietnam, where she was tortured, the video then sent to
+          the family. Only a few days later she was rescued by the Cambodian
+          police, alerted by the family.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          image: Kidnapping pic of Cambodian police?
+        </div>
+        <p class="basic_margin">
+          With the techniques used by scammers already highly sophisticated, the
+          emergence and accessibility of new artificial intelligence (AI) tools
+          is creating more opportunities.
+        </p>
+        <p class="basic_margin">
+          For at least the past year, media reports have documented scams
+          facilitated by ‘deep fake’ technology, where software is used to mimic
+          the face or voice of someone known to the scam target. Additionally,
+          generative AI tools can make it easier to send out phishing messages
+          using duplicate or created backstories and trails of digital activity
+          to make fake identities seem more believable.
+        </p>
+        <p class="basic_margin">
+          According to the head of the financial and economic crime unit at
+          Europol, with large-language tools like ChatGPT ‘you can write
+          thousands of tailored messages in different languages with different
+          targets, different stories, and you can do that with your laptop from
+          wherever.’
+        </p>
+      </section>
+
+      <section class="block_content basic_margin">
+        <h2 class="sub_head">Going Global</h2>
+        <p class="basic_margin">
+          If the past few years spent observing the online scam industry have
+          taught us anything, it is that the capital behind these operations is
+          very mobile.
+        </p>
+        <p class="basic_margin">
+          As we have seen, scam operators seek locations where there is existing
+          infrastructure they can take advantage of, such as reliable internet
+          connectivity and telecommunication links, as well as office and
+          accommodation space, ideally in coastal or border areas.
+        </p>
+        <p class="basic_margin">
+          If the physical infrastructure is lacking, it can still be created,
+          but what is most essential is for operators to build connections with
+          local elites and power brokers or tap into networks that have them.
+          These connections are essential to ensure the ability of the scam
+          compounds to continue to operate and generally exist in contexts where
+          law enforcement is lax and corruption is rampant.
+        </p>
+        <p class="basic_margin">
+          This type of capital is also particularly sensitive to regulatory
+          crackdowns, moving from one country to the next in a perpetual search
+          for places where it can operate with impunity.
+        </p>
+        <p class="basic_margin">
+          When scam operators come under pressure in some areas—as happened,
+          briefly, in Cambodia in September 2022 and then again in late 2023 in
+          northern Myanmar—they are often able to simply pack up and move to a
+          different location. Dozens of countries can provide a suitable base to
+          these groups, as long as they can count on basic internet
+          infrastructure and the protection and support of local friendly elites
+          and complicit state actors.
+        </p>
+        <div
+          class="basic_margin"
+          style="height: 500px; border: 1px solid coral">
+          chart/map: new scam compound locations/countries
+        </div>
+
+        <p class="basic_margin">
+          Today fraud operations have gone truly global, with evidence of scam
+          compounds appearing as far afield as Serbia, Turkey, Georgia, Mexico,
+          Peru, and West Africa. As new technologies are developed and advance,
+          online scams are only likely to become more sophisticated.
+        </p>
+        <p class="basic_margin">
+          While Chinese-ethnic criminal groups remain a dominant force in the
+          sector, they are now flanked by a very diverse and growing cohort of
+          local and transnational criminals, businessmen, corrupt state
+          officials, politicians, and law enforcement officials from all over
+          the world.
+        </p>
+        <p class="basic_margin">
+          Likewise, there will never be any lack of people who are willing to
+          travel to remote places following the mirage of making easy
+          money—whether they know what they are getting into or not. Compound
+          capitalism might change form again, but it is here to stay.
+        </p>
+      </section>
     </article>
 
     <aside>
-      <div class="block_content">
-        <div>
-          <h2>Acknowledgements</h2>
-          <p class="disclosure_statement">
-            A special thank you to Mark Bo who contributed much of the data
-            collection and cleaning, as well as monitoring the digital footprint
-            of these scam centres.
-          </p>
-        </div>
-        <div>
-          <h2>Authors</h2>
-          <div class="author_bios_wrapper block_content">
-            <div class="author_bio">
-              <div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.theconversation.com/avatars/1529038/width238/getimage_345eee4d-e639-4cfa-8991-492b0459f47a.jpg"
-                  alt="" />
-                <p>
-                  <a
-                    href="https://theconversation.com/profiles/ivan-franceschini-1529038"
-                    target="_blank"
-                    >Ivan Franceschini</a
-                  >
-                </p>
-              </div>
+      <div class="block_content acknowldgement_wrapper">
+        <h2>Acknowledgements</h2>
+        <p class="disclosure_statement">
+          A special thank you to Mark Bo who contributed much of the data, as
+          well as monitoring the digital footprint of these scam centres.
+        </p>
+      </div>
+      <div class="block_content author_list_wrapper">
+        <h2>Authors</h2>
+        <div class="author_bios_wrapper">
+          <div class="author_bio">
+            <div class="author_profile">
+              <img
+                class="author_img"
+                loading="lazy"
+                src="https://cdn.theconversation.com/avatars/1529038/width238/getimage_345eee4d-e639-4cfa-8991-492b0459f47a.jpg"
+                alt="" />
+              <p class="author_name">
+                <a
+                  class="text_link"
+                  href="https://theconversation.com/profiles/ivan-franceschini-1529038"
+                  target="_blank"
+                  >Ivan Franceschini</a
+                >
+              </p>
+            </div>
 
-              <p>
-                Lecturer, Chinese Studies
+            <p class="author_description">
+              Lecturer, Chinese Studies
+              <a
+                class="text_link"
+                href="https://theconversation.com/institutions/the-university-of-melbourne-722"
+                target="_blank"
+                >The University of Melbourne</a
+              >, focusing on Global China, labour rights, and transnational
+              organised crime.
+            </p>
+          </div>
+          <div class="author_bio">
+            <div class="author_profile">
+              <img
+                class="author_img"
+                loading="lazy"
+                src="https://cdn.theconversation.com/avatars/1509027/width238/image-20240207-26-m2wwov.jpg"
+                alt="" />
+              <p class="author_name">
                 <a
-                  href="https://theconversation.com/institutions/the-university-of-melbourne-722"
+                  class="text_link"
+                  href="https://theconversation.com/profiles/ling-li-1529042"
                   target="_blank"
-                  >The University of Melbourne</a
-                >, focusing on Global China, labour rights, and transnational
-                organised crime.
+                  >Ling Li</a
+                >
               </p>
             </div>
-            <div class="author_bio">
-              <div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.theconversation.com/avatars/1509027/width238/image-20240207-26-m2wwov.jpg"
-                  alt="" />
-                <p>
-                  <a
-                    href="https://theconversation.com/profiles/ling-li-1529042"
-                    target="_blank"
-                    >Ling Li</a
-                  >
-                </p>
-              </div>
-              <p>
-                PhD candidate,
+            <p class="author_description">
+              PhD candidate,
+              <a
+                class="text_link"
+                href="https://theconversation.com/institutions/ca-foscari-university-of-venice-4378"
+                target="_blank"
+                >Ca' Foscari University of Venice</a
+              >.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="block_content author_list_wrapper">
+        <h2>Editorial production</h2>
+        <div class="author_bios_wrapper">
+          <div class="author_bio">
+            <div class="author_profile">
+              <img
+                class="author_img"
+                loading="lazy"
+                src="https://cdn.theconversation.com/avatars/470587/width238/image-20191027-113962-mmopio.jpg"
+                alt="" />
+              <p class="author_name">
                 <a
-                  href="https://theconversation.com/institutions/ca-foscari-university-of-venice-4378"
+                  class="text_link"
+                  href="https://theconversation.com/profiles/signe-dean-1366025"
                   target="_blank"
-                  >Ca' Foscari University of Venice</a
-                >.
+                  >Justin Bergman</a
+                >
               </p>
             </div>
+            <p class="author_description">International Affairs Editor</p>
+          </div>
+          <div class="author_bio">
+            <div class="author_profile">
+              <img
+                class="author_img"
+                loading="lazy"
+                src="https://cdn.theconversation.com/avatars/1474685/width238/image-20231004-24-92az11.jpg"
+                alt="" />
+              <p class="author_name">
+                <a
+                  class="text_link"
+                  href="https://theconversation.com/profiles/matt-garrow-1474685"
+                  target="_blank"
+                  >Matt Garrow</a
+                >
+              </p>
+            </div>
+            <p class="author_description">Editorial Web Developer</p>
           </div>
         </div>
-        <div>
-          <h2>Editorial production</h2>
-          <div class="author_bios_wrapper block_content">
-            <div class="author_bio">
-              <div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.theconversation.com/avatars/470587/width238/image-20191027-113962-mmopio.jpg"
-                  alt="" />
-                <p>
-                  <a
-                    href="https://theconversation.com/profiles/signe-dean-1366025"
-                    target="_blank"
-                    >Justin Bergman</a
-                  >
-                </p>
-              </div>
-              <p>International Affairs Editor</p>
-            </div>
-            <div class="author_bio">
-              <div>
-                <img
-                  loading="lazy"
-                  src="https://cdn.theconversation.com/avatars/1474685/width238/image-20231004-24-92az11.jpg"
-                  alt="" />
-                <p>
-                  <a
-                    href="https://theconversation.com/profiles/matt-garrow-1474685"
-                    target="_blank"
-                    >Matt Garrow</a
-                  >
-                </p>
-              </div>
-              <p>Editorial Web Developer</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h2>Disclosure statement</h2>
-          <p class="disclosure_statement">
-            Meg Walker studies at Griffith University. The team receives funding
-            from The Australian Research Council. She is affiliated with Cave
-            Divers Association of Australia.<br /><br />Joseph Monks, is an
-            industry fellow at Griffith University. The team receives funding
-            from The Australian Research Council of which he is a Partner
-            investigator. He is an advance cave diver and the liaison to the
-            Cave Divers Association of Australia.<br /><br />Julien Louys works
-            for Griffith University. He receives funding from The Australian
-            Research Council. He is affiliated with the Cave Divers Association
-            of Australia.
-          </p>
-        </div>
+      </div>
+      <div class="block_content disclosures_wrapper">
+        <h2>Disclosure statement</h2>
+        <p class="disclosure_statement">
+          Ivan Franceschini lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Autem vel, repellat, repellendus illum labore delectus sapiente
+          corporis ad suscipit perferendis impedit rem maxime ipsum sequi velit?
+          Quod corporis similique excepturi.<br /><br />Ling Li, lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Autem vel, repellat,
+          repellendus illum labore delectus sapiente corporis ad suscipit
+          perferendis impedit rem maxime ipsum sequi velit? Quod corporis
+          similique excepturi.
+        </p>
       </div>
     </aside>
 

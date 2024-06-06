@@ -1,50 +1,25 @@
 *,
 ::after,
 ::before {
-  box-sizing: border-box; /* Opera/IE 8+ */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font: inherit;
+  line-height: calc(
+    1em + 0.7rem
+  ); /* Calculates perfect line height for small and large font sizes */
 }
 html {
-  hanging-punctuation: first last;
-  /* line-height: 1.15; */
   -webkit-text-size-adjust: 100%;
-  font-family: "Libre Baskerville", serif;
-}
-body {
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.5;
-}
-button,
-hr {
-  overflow: visible;
-}
-main {
-  display: block;
-}
-hr {
-  box-sizing: content-box;
-  height: 0;
-}
-a {
-  background-color: transparent;
-}
-b,
-strong {
-  font-weight: bolder;
+  text-size-adjust: 100%;
 }
 img,
 picture,
 video,
 canvas,
 svg {
-  width: 100%;
   display: block;
   max-width: 100%;
-}
-figure {
-  padding: 0;
 }
 p,
 h1,
@@ -66,36 +41,8 @@ h6 {
 p {
   text-wrap: pretty;
 }
-h1 {
-  line-height: 1.2;
-}
-
-h2 {
-  line-height: 1.25;
-}
-
-h3 {
-  line-height: 1.3;
-}
-
-h4 {
-  line-height: 1.35;
-}
-
-h5 {
-  line-height: 1.4;
-}
-
-h6 {
-  line-height: 1.5;
-}
-
-p {
-  line-height: 1.5;
-}
-#root,
-#__next {
-  isolation: isolate;
+ul {
+  margin-left: 2rem;
 }
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {
