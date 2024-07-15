@@ -584,7 +584,7 @@ function test() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  createMapboxMap(map1Config, map1Locations);
+  // createMapboxMap(map1Config, map1Locations);
 
   createTitleAnimation();
 
