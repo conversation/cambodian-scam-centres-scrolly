@@ -13,6 +13,9 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+body {
+  overscroll-behavior: none;
+}
 img,
 picture,
 video,
@@ -43,6 +46,9 @@ p {
 }
 ul {
   margin-left: 2rem;
+}
+i {
+  font-style: italic;
 }
 @media (prefers-reduced-motion: no-preference) {
   :has(:target) {

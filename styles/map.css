@@ -1,9 +1,8 @@
 .mapboxgl-map {
-  animation: fadeIn 2s forwards ease-in-out;
+  /* animation: fadeIn 2s forwards ease-in-out; */
   top: 0;
-  opacity: 1;
+  opacity: 1 !important;
   height: 100vh;
-  /* height: 100dvh; */
   width: 100%;
 }
 
@@ -18,7 +17,7 @@
 
 .mapInset {
   --height: 150px;
-  animation: fadeIn 2s forwards ease-in-out;
+  /* animation: fadeIn 2s forwards ease-in-out; */
   top: calc(100% - var(--height) - 20px);
   left: 20px;
   width: auto;
