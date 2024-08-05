@@ -216,7 +216,7 @@ body {
 }
 
 .standfirst {
-  font-size: var(--font-size--large);
+  font-size: var(--font-size--xl2);
   text-align: center;
   font-weight: 400;
   margin-bottom: 0.5rem;
@@ -428,6 +428,24 @@ aside h2 {
   aspect-ratio: 1;
 }
 
+/* -------- KK Park Satellite ------- */
+
+.kk_park_sat_wrapper {
+  top: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.kk_park_sat_wrapper figure {
+  position: absolute;
+  opacity: 0;
+}
+
+.kk_park_sat_wrapper figure:first-child {
+  opacity: 1;
+}
+
 /* -------- SVG map ------- */
 
 #south_east_asia_map {
@@ -558,7 +576,7 @@ aside h2 {
   }
 
   .standfirst {
-    font-size: var(--font-size--base);
+    font-size: var(--font-size--xl);
   }
 
   .date {

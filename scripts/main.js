@@ -24,17 +24,6 @@ function createScrollFades() {
       });
     });
   });
-
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: "#map1",
-        start: "top 90%", // when the top of the trigger hits the top of the viewport
-        end: "top top", // end after scrolling 500px beyond the start
-        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-      },
-    })
-    .to(".title_section", { alpha: 0 });
 }
 
 function createPigButchering() {
@@ -97,14 +86,26 @@ function createTitleAnimation() {
       0
     );
   });
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#map1",
+        start: "top 90%", // when the top of the trigger hits the top of the viewport
+        end: "top top", // end after scrolling 500px beyond the start
+        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      },
+    })
+    .to(".title_section", { alpha: 0 });
 }
 
 function createKKParkAnim() {
   const section = document.querySelector(".kk_park");
   const text = section.querySelector(".pinned_text");
-  const figures = section.querySelectorAll("figure");
+  const figureWrapper = section.querySelector(".kk_park_sat_wrapper");
+  const figures = figureWrapper.querySelectorAll("figure");
 
-  const tl = gsap
+  const zoomTl = gsap
     .timeline({
       scrollTrigger: {
         trigger: text,
@@ -114,10 +115,26 @@ function createKKParkAnim() {
       },
     })
     .fromTo(
-      figures,
+      figureWrapper,
       { scale: 2.3, y: -100 },
       { scale: 1.2, y: -90, ease: "power1.inOut" }
     );
+
+  gsap.utils.toArray(".kk_park .step").forEach((step, index) => {
+    let figure = figures[index + 1];
+
+    ScrollTrigger.create({
+      fastScrollEnd: true,
+      trigger: step,
+      start: `top 90%`,
+      onEnter: () => {
+        figure.classList.add("make_visible");
+      },
+      onLeaveBack: () => {
+        figure.classList.remove("make_visible");
+      },
+    });
+  });
 }
 
 function test() {
@@ -590,7 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   createKKParkAnim();
 
-  createScrollFades();
+  // createScrollFades();
 
   createPigButchering();
 
