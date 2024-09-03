@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 const cambodiaData = [
   {
     State: "Banteay Meanchey",
@@ -632,28 +630,28 @@ function createMapboxMap(config, mapLocations) {
 
   var map = new mapboxgl.Map(initMapOptions);
 
-  // Create a inset map if enabled in config.js
-  if (config.inset) {
-    let initInsetOptions = {
-      container: config.insetContainer,
-      style: "mapbox://styles/mapbox/dark-v10",
-      zoom: 2, // starting zoom
-      hash: false,
-      interactive: false,
-      attributionControl: false,
-    };
+  // // Create a inset map if enabled in config.js
+  // if (config.inset) {
+  //   let initInsetOptions = {
+  //     container: config.insetContainer,
+  //     style: "mapbox://styles/mapbox/dark-v10",
+  //     zoom: 2, // starting zoom
+  //     hash: false,
+  //     interactive: false,
+  //     attributionControl: false,
+  //   };
 
-    if (mapLocations[0].centerLocation) {
-      initInsetOptions.center = mapLocations[0].centerLocation.center;
-    } else {
-      initInsetOptions.bounds = mapLocations[0].boundsLocation.bounds;
-      initInsetOptions.fitBoundsOptions =
-        mapLocations[0].boundsLocation.fitBoundsOptions;
-      initInsetOptions.fitBoundsOptions.maxZoom = 2;
-    }
+  //   if (mapLocations[0].centerLocation) {
+  //     initInsetOptions.center = mapLocations[0].centerLocation.center;
+  //   } else {
+  //     initInsetOptions.bounds = mapLocations[0].boundsLocation.bounds;
+  //     initInsetOptions.fitBoundsOptions =
+  //       mapLocations[0].boundsLocation.fitBoundsOptions;
+  //     initInsetOptions.fitBoundsOptions.maxZoom = 2;
+  //   }
 
-    var insetMap = new mapboxgl.Map(initInsetOptions);
-  }
+  //   var insetMap = new mapboxgl.Map(initInsetOptions);
+  // }
 
   function calculateCornerCoordinates(center, width, height, angle) {
     const earthCircumference = 40075017; // Earth's circumference in meters
@@ -718,52 +716,239 @@ function createMapboxMap(config, mapLocations) {
       });
     }
 
-    // const imageWidth = 40000;
-    // const imageHeight = 26680;
-
-    // map.addSource("pic1", {
-    //   type: "image",
-    //   url: "../assets/pics/1C6A3378.webp",
-    //   coordinates: calculateCornerCoordinates(
-    //     [108.34101, 21.13817],
-    //     imageWidth * 2,
-    //     imageHeight * 2,
-    //     180
-    //   ),
-    // });
-    // map.addLayer({
-    //   id: "pic1-layer",
-    //   type: "raster",
-    //   source: "pic1",
-    //   paint: {
-    //     "raster-opacity": 1,
-    //     "raster-fade-duration": 0,
-    //   },
-    // });
-    // map.addSource("pic2", {
-    //   type: "image",
-    //   url: "../assets/pics/DJI_0070.webp",
-    //   coordinates: calculateCornerCoordinates(
-    //     [106.13925, 11.06713],
-    //     imageWidth * 2,
-    //     imageHeight * 2,
-    //     0
-    //   ),
-    // });
-    // map.addLayer({
-    //   id: "pic2-layer",
-    //   type: "raster",
-    //   source: "pic2",
-    //   paint: {
-    //     "raster-opacity": 1,
-    //     "raster-fade-duration": 0,
-    //   },
-    // });
-
     // As the map moves, grab and update bounds in inset map.
     if (config.inset) {
       map.on("move", getInsetBounds);
     }
+
+    const layers = map.getStyle().layers;
+    // Find the index of the first symbol layer in the map style.
+    let firstSymbolId;
+    for (const layer of layers) {
+      if (layer.type === "symbol") {
+        firstSymbolId = layer.id;
+        break;
+      }
+    }
+
+    map.addSource("franks-journey", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: {
+              type: "LineString",
+              coordinates: [
+                [55.290507, 25.262836],
+                [102.54704452890381, 19.91870385276766],
+              ],
+            },
+            properties: {
+              title: "Dubai to Laos",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [55.290507, 25.262836],
+            },
+            properties: {
+              title: "Dubai",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [102.54704452890381, 19.91870385276766],
+            },
+            properties: {
+              title: "Laos",
+            },
+          },
+        ],
+      },
+    });
+    map.addSource("franks-journey-home", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              coordinates: [
+                [96.11, 21.44],
+                [32.57, 0.31],
+              ],
+              type: "LineString",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [96.11, 21.44],
+            },
+            properties: {
+              title: "Myanmar",
+            },
+          },
+          {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [32.57, 0.31],
+            },
+            properties: { title: "Kampala" },
+          },
+        ],
+      },
+    });
+
+    map.addSource("golden-triangle", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: { title: "golden triangle" },
+            geometry: {
+              coordinates: [
+                [
+                  [104.67676128674862, 20.288694021698348],
+                  [97.76124660932499, 23.900101474281016],
+                  [97.9486904368473, 17.608965040005828],
+                  [104.67676128674862, 20.288694021698348],
+                ],
+              ],
+              type: "Polygon",
+            },
+          },
+        ],
+      },
+    });
+
+    // Add a layer to display the lines.
+    map.addLayer(
+      {
+        id: "Dubai-Laos-line",
+        type: "line",
+        source: "franks-journey",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#d8352a",
+          "line-width": 3,
+          "line-opacity": 0,
+        },
+      },
+      "country-label"
+    );
+
+    // Add a layer to display the points.
+    map.addLayer(
+      {
+        id: "Dubai-Laos-points",
+        type: "circle",
+        source: "franks-journey",
+        paint: {
+          "circle-radius": 10,
+          "circle-opacity": 0,
+          "circle-color": "#d8352a",
+        },
+      },
+      firstSymbolId
+    );
+    // Add a layer to display the lines.
+    map.addLayer({
+      id: "Myanmar-Uganda-line",
+      type: "line",
+      source: "franks-journey-home",
+      layout: {
+        "line-join": "round",
+        "line-cap": "round",
+      },
+      paint: {
+        "line-color": "#d8352a",
+        "line-width": 3,
+        "line-opacity": 0,
+      },
+    });
+
+    // Add a layer to display the points.
+    map.addLayer(
+      {
+        id: "Myanmar-Uganda-points",
+        type: "circle",
+        source: "franks-journey-home",
+        paint: {
+          "circle-radius": 10,
+          "circle-opacity": 0,
+          "circle-color": "#d8352a",
+        },
+      },
+      firstSymbolId
+    );
+
+    map.addLayer(
+      {
+        id: "laos-boundaries",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.country-boundaries-v1",
+        },
+        "source-layer": "country_boundaries",
+        type: "fill",
+        paint: {
+          "fill-color": "#d8352a",
+          "fill-opacity": 0,
+        },
+      },
+      "country-label"
+    );
+
+    map.setFilter("laos-boundaries", ["in", "iso_3166_1_alpha_3", "LAO"]);
+
+    // Add a layer to display the points.
+    map.addLayer(
+      {
+        id: "golden-triangle",
+        type: "fill",
+        source: "golden-triangle",
+        paint: {
+          "fill-color": "#feaa01",
+          "fill-opacity": 0,
+        },
+      },
+      "country-label"
+    );
+
+    map.addLayer(
+      {
+        id: "myanmar-boundaries",
+        source: {
+          type: "vector",
+          url: "mapbox://mapbox.country-boundaries-v1",
+        },
+        "source-layer": "country_boundaries",
+        type: "fill",
+        paint: {
+          "fill-color": "#d8352a",
+          "fill-opacity": 0,
+        },
+      },
+      "country-label"
+    );
+
+    map.setFilter("myanmar-boundaries", ["in", "iso_3166_1_alpha_3", "MMR"]);
 
     gsap.utils
       .toArray(`.${config.scrollSection} .map_step`)
@@ -772,9 +957,9 @@ function createMapboxMap(config, mapLocations) {
 
         ScrollTrigger.create({
           trigger: step,
-          start: "top 80%",
+          start: "top 90%",
           endTrigger: nextStep ? nextStep : step,
-          end: nextStep ? "top 80%" : "bottom 80%",
+          end: nextStep ? "top 90%" : "bottom 90%",
           onToggle: (element) => {
             let mapLocation = mapLocations[index];
 
@@ -799,10 +984,10 @@ function createMapboxMap(config, mapLocations) {
                 // Uses the bounds or center to flyTo on the map
                 boundsOrCenter(map, mapLocation, false);
 
-                if (config.inset) {
-                  // Uses the bounds or center to flyTo on the inset map
-                  boundsOrCenter(insetMap, mapLocation, true);
-                }
+                // if (config.inset) {
+                //   // Uses the bounds or center to flyTo on the inset map
+                //   boundsOrCenter(insetMap, mapLocation, true);
+                // }
 
                 if (mapLocation.onChapterEnter) {
                   mapLocation.onChapterEnter.forEach(setLayerOpacity);
@@ -840,19 +1025,6 @@ function createMapboxMap(config, mapLocations) {
             }
           },
         });
-
-        // if (index < 1) {
-        //   const titleAnimation = gsap
-        //     .timeline({
-        //       scrollTrigger: {
-        //         trigger: "#map1",
-        //         start: "top 90%", // when the top of the trigger hits the top of the viewport
-        //         end: "top top", // end after scrolling 500px beyond the start
-        //         scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-        //       },
-        //     })
-        //     .to(".title_section", { alpha: 0 });
-        // }
       });
   });
 
@@ -913,34 +1085,20 @@ const map1Locations = [
     callbackOut: "",
     onChapterEnter: [
       {
-        layer: "scam-centre-route-part1-circles",
-        opacity: 0,
-        duration: 2000,
-      },
-      {
-        layer: "scam-centre-route-part1-line",
-        opacity: 0,
-        duration: 2000,
-      },
-      {
-        layer: "scam-centre-route-part2-circles",
+        layer: "Dubai-Laos-points",
         opacity: 0,
       },
       {
-        layer: "scam-centre-route-part2-line",
+        layer: "Dubai-Laos-line",
         opacity: 0,
       },
       {
-        layer: "scam-centre-route-part3-circles",
-        opacity: 0,
-      },
-      {
-        layer: "scam-centre-route-part3-line",
+        layer: "laos-boundaries",
         opacity: 0,
       },
     ],
     centerLocation: {
-      center: [110.21, 29.27],
+      center: [55.287, 25.253],
       zoom: 4.5,
       pitch: 45.0,
       bearing: 0.0,
@@ -954,37 +1112,24 @@ const map1Locations = [
     callbackOut: "",
     onChapterEnter: [
       {
-        layer: "scam-centre-route-part1-circles",
+        layer: "Dubai-Laos-points",
+        opacity: 0,
+      },
+      {
+        layer: "Dubai-Laos-line",
+        opacity: 0,
+      },
+      {
+        layer: "laos-boundaries",
         opacity: 0,
         duration: 2000,
-      },
-      {
-        layer: "scam-centre-route-part1-line",
-        opacity: 0,
-        duration: 2000,
-      },
-      {
-        layer: "scam-centre-route-part2-circles",
-        opacity: 0,
-      },
-      {
-        layer: "scam-centre-route-part2-line",
-        opacity: 0,
-      },
-      {
-        layer: "scam-centre-route-part3-circles",
-        opacity: 0,
-      },
-      {
-        layer: "scam-centre-route-part3-line",
-        opacity: 0,
       },
     ],
     centerLocation: {
-      center: [104.05045, 30.63413],
-      zoom: 9,
-      pitch: 45.0,
-      bearing: 0.0,
+      center: [55.287, 25.253],
+      zoom: 10,
+      pitch: 50.0,
+      bearing: 90.0,
       speed: 0.4,
     },
   },
@@ -994,33 +1139,33 @@ const map1Locations = [
     rotationDirection: "CCW",
     onChapterEnter: [
       {
-        layer: "scam-centre-route-part1-circles",
+        layer: "Dubai-Laos-points",
         opacity: 1,
-        duration: 1500,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part1-line",
-        opacity: 0.8,
-        duration: 1500,
+        layer: "Dubai-Laos-line",
+        opacity: 1,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part2-circles",
+        layer: "laos-boundaries",
+        opacity: 0.3,
+        duration: 2000,
+      },
+      {
+        layer: "golden-triangle",
         opacity: 0,
-        duration: 1000,
-      },
-      {
-        layer: "scam-centre-route-part2-line",
-        opacity: 0,
-        duration: 1000,
+        duration: 2000,
       },
     ],
     callbackOut: "",
     centerLocation: {
-      center: [108.35243, 21.7007],
-      zoom: 9,
-      pitch: 51.5,
-      bearing: -164.82,
-      speed: 0.4,
+      center: [102.56, 19.53],
+      zoom: 7,
+      pitch: 45,
+      bearing: 0,
+      speed: 0.6,
     },
   },
   {
@@ -1029,52 +1174,39 @@ const map1Locations = [
     rotationDirection: "CW",
     onChapterEnter: [
       {
-        layer: "scam-centre-route-part1-circles",
-        opacity: 1,
-      },
-      {
-        layer: "scam-centre-route-part1-line",
-        opacity: 0.8,
-      },
-      {
-        layer: "scam-centre-route-part2-circles",
-        opacity: 1,
-        duration: 1000,
-      },
-      {
-        layer: "scam-centre-route-part2-line",
-        opacity: 0.8,
-        duration: 1000,
-      },
-      {
-        layer: "scam-centre-route-part3-circles",
+        layer: "Dubai-Laos-points",
         opacity: 0,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part3-line",
+        layer: "Dubai-Laos-line",
         opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "laos-boundaries",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "golden-triangle",
+        opacity: 0.4,
+        duration: 2000,
+      },
+      {
+        layer: "myanmar-boundaries",
+        opacity: 0,
+        duration: 2000,
       },
     ],
     callbackOut: "",
     centerLocation: {
-      center: [106.63345, 20.77809],
-      zoom: 8,
-      pitch: 44.0,
-      bearing: -34.4,
+      center: [100.14, 20.41],
+      zoom: 5,
+      pitch: 0.0,
+      bearing: 0,
       speed: 0.4,
     },
-    // boundsLocation: {
-    //   bounds: [
-    //     [106.089478, 20.081729],
-    //     [107.545166, 21.493964]
-    //   ],
-    //   fitBoundsOptions: {
-    //     maxZoom: 9,
-    //     pitch: 44.72,
-    //     bearing: -45.58,
-    //     speed: 0.4
-    //   }
-    // }
   },
   {
     mapAnimation: "flyTo",
@@ -1082,62 +1214,151 @@ const map1Locations = [
     rotationDirection: "CW",
     onChapterEnter: [
       {
-        layer: "scam-centre-route-part1-circles",
-        opacity: 1,
+        layer: "Dubai-Laos-points",
+        opacity: 0,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part1-line",
-        opacity: 0.8,
+        layer: "Dubai-Laos-line",
+        opacity: 0,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part2-circles",
-        opacity: 1,
+        layer: "laos-boundaries",
+        opacity: 0,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part2-line",
-        opacity: 0.8,
+        layer: "golden-triangle",
+        opacity: 0,
+        duration: 2000,
       },
       {
-        layer: "scam-centre-route-part3-circles",
-        opacity: 1,
-        duration: 3000,
-      },
-      {
-        layer: "scam-centre-route-part3-line",
-        opacity: 0.8,
-        duration: 3000,
+        layer: "myanmar-boundaries",
+        opacity: 0,
+        duration: 2000,
       },
     ],
     callbackOut: "",
-    // centerLocation: {
-    //   center: [106.13925, 11.06713],
-    //   zoom: 10.26,
-    //   pitch: 7.5,
-    //   bearing: 0.0
-    // }
-    boundsLocation: {
-      bounds: [
-        [106.064149, 10.995806],
-        [106.244051, 11.143047],
-      ],
-      fitBoundsOptions: {
-        maxZoom: 10,
-        zoom: 10.33,
-        pitch: 39.5,
-        bearing: 0.0,
-        speed: 0.4,
+    centerLocation: {
+      center: [102.56, 19.53],
+      zoom: 7,
+      pitch: 45,
+      bearing: 0,
+      speed: 0.4,
+    },
+    // boundsLocation: {
+    //   bounds: [
+    //     [106.064149, 10.995806],
+    //     [106.244051, 11.143047],
+    //   ],
+    //   fitBoundsOptions: {
+    //     maxZoom: 10,
+    //     zoom: 10.33,
+    //     pitch: 39.5,
+    //     bearing: 0.0,
+    //     speed: 0.4,
+    //   },
+    // },
+  },
+  {
+    mapAnimation: "flyTo",
+    rotateAnimation: false,
+    rotationDirection: "CW",
+    onChapterEnter: [
+      {
+        layer: "Dubai-Laos-points",
+        opacity: 0,
+        duration: 2000,
       },
+      {
+        layer: "Dubai-Laos-line",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "laos-boundaries",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "golden-triangle",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "myanmar-boundaries",
+        opacity: 0.4,
+        duration: 2000,
+      },
+      {
+        layer: "Myanmar-Uganda-points",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "Myanmar-Uganda-line",
+        opacity: 0,
+        duration: 2000,
+      },
+    ],
+    callbackIn: "",
+    callbackOut: "",
+    centerLocation: {
+      center: [96.11, 21.44],
+      zoom: 6,
+      pitch: 0.0,
+      bearing: 0.0,
+      speed: 0.2,
     },
   },
   {
     mapAnimation: "flyTo",
     rotateAnimation: false,
     rotationDirection: "CW",
+    onChapterEnter: [
+      {
+        layer: "Dubai-Laos-points",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "Dubai-Laos-line",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "laos-boundaries",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "golden-triangle",
+        opacity: 0,
+        duration: 2000,
+      },
+      {
+        layer: "myanmar-boundaries",
+        opacity: 0,
+        duration: 2000,
+      },
+
+      {
+        layer: "Myanmar-Uganda-points",
+        opacity: 1,
+        duration: 2000,
+      },
+      {
+        layer: "Myanmar-Uganda-line",
+        opacity: 1,
+        duration: 2000,
+      },
+    ],
     callbackIn: "",
     callbackOut: "",
     centerLocation: {
-      center: [104.90091, 11.58829],
-      zoom: 7.61,
+      center: [32.57, 0.31],
+      zoom: 6,
       pitch: 0.0,
       bearing: 0.0,
       speed: 0.4,
