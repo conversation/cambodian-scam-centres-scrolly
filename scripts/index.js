@@ -110,42 +110,45 @@ function createKKParkAnim() {
 }
 
 function createPigButchering() {
-  const pinnedSection = document.querySelector(".pig_butchering");
-  const mobileWrapper = pinnedSection.querySelector(".mobile_phone_wrapper");
-  const bgArr = mobileWrapper.children;
-  const parTriggersArr = pinnedSection.querySelectorAll(".next");
+  const messageBubbleInitialSection = document.querySelector(
+    ".message_bubbles_initial",
+  );
+  const messageBubbDigCurrencySection = document.querySelector(
+    ".message_bubbles_digital_currency",
+  );
 
-  parTriggersArr.forEach((par, index) => {
-    let textPadding = window.getComputedStyle(par).paddingTop;
-    let start, stop;
-    if (window.innerWidth < 599) {
-      start = `top bottom`;
-      end = `center ${
-        window.innerHeight -
-        (window.innerHeight - mobileWrapper.clientHeight) / 2
-      }`;
-    } else {
-      start = `top ${
-        (window.innerHeight - mobileWrapper.clientHeight) / 2 +
-        mobileWrapper.clientHeight
-      }`;
-      end = `top center`;
-    }
+  const messageBubblesInitial =
+    messageBubbleInitialSection.querySelectorAll(".message_bubble");
 
-    gsap.fromTo(
-      bgArr[par.dataset.imageIndex],
-      { clipPath: `inset(100% 0% 0% 0%)` },
-      {
-        clipPath: "inset(0% 0% 0% 0%)",
-        ease: "sine.inOut",
-        scrollTrigger: {
-          trigger: par,
-          start: start,
-          end: end,
-          scrub: 0.4,
-        },
+  const messageBubbDigCurrency =
+    messageBubbDigCurrencySection.querySelectorAll(".message_bubble");
+
+  messageBubblesInitial.forEach((message) => {
+    ScrollTrigger.create({
+      trigger: message,
+      start: "top 70%",
+      end: "bottom bottom",
+      onEnter: () => {
+        message.classList.add("make_visible");
       },
-    );
+      onLeaveBack: () => {
+        message.classList.remove("make_visible");
+      },
+    });
+  });
+
+  messageBubbDigCurrency.forEach((message) => {
+    ScrollTrigger.create({
+      trigger: message,
+      start: "top 70%",
+      end: "bottom bottom",
+      onEnter: () => {
+        message.classList.add("make_visible");
+      },
+      onLeaveBack: () => {
+        message.classList.remove("make_visible");
+      },
+    });
   });
 }
 
