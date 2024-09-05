@@ -1,31 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
 
-function createScrollFades() {
-  gsap.utils.toArray(".pinned_section").forEach((pinnedSection) => {
-    const bgArr = pinnedSection.querySelector(".pinned_media").children;
-
-    const parTriggersArr = pinnedSection.querySelectorAll(".step");
-
-    parTriggersArr.forEach((par, index) => {
-      ScrollTrigger.create({
-        fastScrollEnd: true,
-        trigger: par,
-        start: `top ${par.classList.contains("delay") ? "70" : "90"}%`,
-        onEnter: () => {
-          bgArr[par.dataset.imageIndex || index + 1].classList.add(
-            "make_visible",
-          );
-        },
-        onLeaveBack: () => {
-          bgArr[par.dataset.imageIndex || index + 1].classList.remove(
-            "make_visible",
-          );
-        },
-      });
-    });
-  });
-}
-
 function createFrankAnimaiton() {
   gsap
     .timeline({
@@ -125,6 +99,7 @@ function createPigButchering() {
 
   messageBubblesInitial.forEach((message) => {
     ScrollTrigger.create({
+      // markers: true,
       trigger: message,
       start: "top 70%",
       end: "bottom bottom",
@@ -139,6 +114,7 @@ function createPigButchering() {
 
   messageBubbDigCurrency.forEach((message) => {
     ScrollTrigger.create({
+      // markers: true,
       trigger: message,
       start: "top 70%",
       end: "bottom bottom",
@@ -166,4 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ScrollTrigger.refresh();
     });
   });
+
+  let x = document.querySelector("footer").offsetHeight;
+  ScrollTrigger.refresh();
 });
