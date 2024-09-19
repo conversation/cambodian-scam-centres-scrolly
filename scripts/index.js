@@ -1,6 +1,15 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener("DOMContentLoaded", () => {
+  const showBtn = document.querySelector("#sensitiveWarning");
+  const image = document.querySelector("#sensitiveImg");
+
+  showBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    image.classList.remove("blurred");
+    showBtn.style.display = "none";
+  });
+
   function createFrankAnimaiton() {
     gsap
       .timeline({
@@ -88,6 +97,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function droneSection() {
+    const section = document.querySelector(".drone_shots");
+    const figures = section.querySelectorAll("img");
+
+    gsap.utils.toArray(".drone_shots .step").forEach((step, index) => {
+      let figure = figures[index + 1];
+
+      ScrollTrigger.create({
+        trigger: step,
+        start: `top 90%`,
+        onEnter: () => {
+          figure.classList.add("make_visible");
+        },
+        onLeaveBack: () => {
+          figure.classList.remove("make_visible");
+        },
+      });
+    });
+  }
+
   function createPigButchering() {
     const messageBubblesInitial = document
       .querySelector(".message_bubbles_initial")
@@ -128,6 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
   createFrankAnimaiton();
 
   createMapboxMap(map1Config, map1Locations);
+
+  droneSection();
 
   createKKParkAnim();
 
