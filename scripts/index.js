@@ -1,14 +1,85 @@
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 document.addEventListener("DOMContentLoaded", () => {
-  const showBtn = document.querySelector("#sensitiveWarning");
-  const image = document.querySelector("#sensitiveImg");
+  function sensitiveImage() {
+    const showBtn = document.querySelector("#sensitiveWarning");
+    const image = document.querySelector("#sensitiveImg");
 
-  showBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    image.classList.remove("blurred");
-    showBtn.style.display = "none";
-  });
+    showBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      image.classList.toggle("blurred");
+      showBtn.classList.toggle("make_hidden");
+      // showBtn.style.display = "none";
+    });
+  }
+
+  function phrasebookScramble() {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".scramble_wrapper",
+        start: "center center",
+        end: "center center",
+        onEnterBack: () => {
+          if (tl.paused()) {
+            tl.play();
+          }
+        },
+      },
+    });
+
+    tl.to(".scramble_wrapper img", {
+      duration: 0.4,
+      opacity: 0.2,
+    });
+    tl.to(
+      "#scramble1",
+      {
+        duration: 2,
+        text: {
+          value:
+            "Do not use a simple emoji to open your conversation because it shows no sense of need from your side.",
+          delimiter: " ",
+        },
+      },
+      "0",
+    );
+    tl.to(
+      "#scramble2",
+      {
+        duration: 2,
+        text: {
+          value:
+            "If a girl shares many selfies with a peace gesture, you could open the conversation saying: ‘You look so cute when you are doing the peace sign in your photos.’ How can a girl say no to a guy who pays attention to details such as her poses?",
+          delimiter: " ",
+        },
+      },
+      "<20%",
+    );
+    tl.to(
+      "#scramble3",
+      {
+        duration: 2,
+        text: {
+          value: `
+          Man: I found that there is something in your eyes (to raise girl’s curiosity)<br>
+          Woman: What is that?<br>
+          Man: There is a goodlooking guy looking at you (link the answer to yourself)<br>
+          Woman: Haha, you are full of yourself (let the girl to make fun of you)<br>
+          Man: I have to look good to be able to talk to someone as cute as you.`,
+          delimiter: " ",
+        },
+      },
+      "<40%",
+    );
+
+    ScrollTrigger.create({
+      trigger: ".scramble_wrapper",
+      start: `top bottom`,
+      end: "bottom top",
+      onLeave: () => tl.restart().pause(),
+      onLeaveBack: () => tl.restart().pause(),
+    });
+  }
 
   function createFrankAnimaiton() {
     gsap
@@ -154,6 +225,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  sensitiveImage();
+
   createFrankAnimaiton();
 
   createMapboxMap(map1Config, map1Locations);
@@ -163,6 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
   createKKParkAnim();
 
   createPigButchering();
+
+  phrasebookScramble();
 
   document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
     img.addEventListener("load", function () {
