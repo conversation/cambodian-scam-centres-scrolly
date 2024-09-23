@@ -24,7 +24,6 @@
     <meta property="og:image" content="" />
 
     <link rel="stylesheet" href="./style.css" />
-    <!-- <link rel="stylesheet" href="./mapbox.css" /> -->
 
     <!-- LIBRARIES -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -35,6 +34,20 @@
       href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css"
       rel="stylesheet"
     />
+
+    <!-- IMIGX -->
+    <script src="https://cdn.jsdelivr.net/npm/imgix.js@4.0.1/dist/imgix.min.js"></script>
+    <script>
+      imgix.config.host = "images.theconversation.com";
+      imgix.config.useHttps = true;
+      imgix.config.defaultParams = {
+        auto: "format,compress",
+        fit: "crop",
+        cs: "srgb",
+      };
+      imgix.config.pathInputAttribute = "data-path";
+      imgix.config.paramsInputAttribute = "data-params";
+    </script>
 
     <!-- Scripts -->
     <script src="./scripts/maps.js"></script>
@@ -126,23 +139,27 @@
               <figure class="relative flex w-full items-center">
                 <img
                   class="absolute left-0 top-0 h-full w-full object-cover"
-                  src="https://images.theconversation.com/files/611349/original/file-20240805-17-1jy5jj.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1500&dpr=1"
+                  data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
                   alt=""
+                  data-params='{"fp-x": 0.5,"crop": "focalpoint","dpr": 1,"q": 15,"max-w":1500}'
                 />
                 <img
                   class="absolute left-0 top-0 h-full w-full object-cover"
-                  src="https://images.theconversation.com/files/611337/original/file-20240805-19-oef0wz.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1500&dpr=1"
+                  data-path="files/611286/original/file-20240805-23-wjps1j.jpeg"
                   alt=""
+                  data-params='{"fp-x": 0.6,"crop": "focalpoint","dpr": 1,"q": 15,"max-w":1500}'
                 />
                 <img
                   class="absolute left-0 top-0 h-full w-full object-cover"
-                  src="https://images.theconversation.com/files/611346/original/file-20240805-17-7z4xwb.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1500&dpr=1"
+                  data-path="files/611346/original/file-20240805-17-7z4xwb.jpg"
                   alt=""
+                  data-params='{"fp-x": 0.5,"crop": "focalpoint","dpr": 1,"q": 15,"max-w":1500}'
                 />
                 <img
                   class="absolute left-0 top-0 h-full w-full object-cover"
-                  src="https://images.theconversation.com/files/611286/original/file-20240805-23-wjps1j.jpeg?ixlib=rb-4.1.0&q=45&auto=format&w=1500&dpr=1"
+                  data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
                   alt=""
+                  data-params='{"fp-x": 0.5,"crop": "focalpoint","dpr": 1,"q": 15,"max-w":1500}'
                 />
               </figure>
             </div>
@@ -185,40 +202,97 @@
       </section>
 
       <section
-        class="frank_section pinned_section pin_clipped not-prose bg-black text-lg md:text-xl"
+        class="frank_section pinned_section pin_clipped not-prose bg-black"
       >
         <div class="pinned_background">
           <div class="pinned_background_wrapper">
-            <img
-              class="frank_img absolute h-screen w-screen object-cover object-[50%_0%] sm:object-[50%_0%]"
-              src="https://images.theconversation.com/files/616688/original/file-20240902-16-ab0sos.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=1"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/616687/original/file-20240902-20-fpm408.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/616688/original/file-20240902-16-ab0sos.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.45,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800, "max-h": 1920}'
+              />
+              <!-- Tablet & large mobile crop -->
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/616688/original/file-20240902-16-ab0sos.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/616688/original/file-20240902-16-ab0sos.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/616688/original/file-20240902-16-ab0sos.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+              />
+
+              <img
+                class="frank_img absolute h-screen w-screen object-cover object-[50%_0%] sm:object-[50%_0%]"
+                data-path="files/616688/original/file-20240902-16-ab0sos.jpg"
+                alt=""
+              />
+            </picture>
+
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/616687/original/file-20240902-20-fpm408.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.6,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800, "max-h": 1920}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/616687/original/file-20240902-20-fpm408.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.55,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 40,"max-w":1200,"max-h": 1920}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/616687/original/file-20240902-20-fpm408.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 50,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/616687/original/file-20240902-20-fpm408.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.55,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 70,"max-w":1800}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/616687/original/file-20240902-20-fpm408.jpg"
+                alt=""
+              />
+            </picture>
           </div>
         </div>
-        <div class="pinned_foreground standard_width text-white">
-          <div
-            class="frank_text pointer-events-none mt-[30vh] flex h-screen w-full items-center md:ml-auto md:max-w-[50%]"
-          >
-            <p
-              class="pointer-events-auto ml-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center md:text-right"
-            >
+        <div class="pinned_foreground standard_width">
+          <div class="frank_text chapter_wrapper chapter_right mt-[30vh]">
+            <p>
               George, a young Ugandan man, led a relatively normal life in
               Kampala. An IT specialist, he fixed computers, configured routers
               and the like.
             </p>
           </div>
-          <div
-            class="pointer-events-none mb-[150vh] flex h-screen w-full items-center md:mr-auto md:max-w-[40%]"
-          >
-            <p
-              class="step pointer-events-auto ml-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center md:text-left"
-            >
+          <div class="chapter_wrapper chapter_left mb-[150vh]">
+            <p class="step">
               Then COVID hit and that normality, along with his work,
               disappeared.
             </p>
@@ -227,39 +301,27 @@
       </section>
 
       <section
-        class="not-prose pinned_section pin_block map1 mb-12 mt-[-150vh] text-lg text-white md:text-xl"
+        class="not-prose pinned_section pin_block map1 mb-12 mt-[-150vh]"
       >
         <div class="pinned_background">
           <div id="map1"></div>
         </div>
         <div class="pinned_foreground standard_width">
-          <div
-            class="pointer-events-none mt-[40vh] flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center mt-[40vh]">
+            <p class="map_step">
               Like many Africans, George hoped to change his fortunes in Dubai.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               But life there was difficult and after two years, he was still
               struggling to make ends meet.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               Then in August 2022, a friend sent him a well-paid IT job
               opportunity in Laos and he jumped at it. The job was a six-month
               contract offering US$1,500 per month, plus commissions and free
@@ -267,59 +329,41 @@
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               George was soon on his way to the Golden Triangle, a lawless area
               on Laos’ border with Myanmar and Thailand.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               Once there, he was asked to sign a contract completely different
               from what he had discussed in Dubai, which required him to pay a
               substantial amount of money.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="">
               His passport and phone were taken away and he was introduced to
               his new job: scamming people into putting money into fake
               investments.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               For two months, Frank dragged his feet, insisting that he was
               simply an IT guy and he should do the work he was good at. Then,
               one day he was sold to a second scam company in Myanmar.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <div class="grid md:grid-cols-2">
+          <div class="chapter_wrapper chapter_center">
+            <div class="grid sm:grid-cols-2">
               <p
-                class="map_quote_block pointer-events-auto relative mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center text-xl italic md:text-left"
+                class="map_quote_block pointer-events-auto relative mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center text-xl italic sm:text-left"
               >
                 They don't tell you [how much they sell you for]. They just tell
                 you: ‘We own you. We bought you.’ … <br /><br />It’s weird. It
@@ -328,20 +372,18 @@
               </p>
               <div class="h-full overflow-hidden">
                 <img
-                  class="h-[220%] rounded-r-sm object-cover object-[50%_-25px] md:h-full md:w-full md:object-none"
-                  src="https://images.theconversation.com/files/620360/original/file-20240919-16-1p4tw0.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=754&h=566&fit=crop&dpr=1"
+                  class="h-[220%] rounded-r-sm object-cover object-[50%_0%] md:h-full md:w-full md:object-none"
+                  data-path="files/620360/original/file-20240919-16-1p4tw0.jpg"
                   alt=""
+                  data-params="{}"
+                  sizes="(max-width: 599px) 100vw, (min-width: 600px) 500px, 500px"
                 />
               </div>
             </div>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="map_step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="map_step">
               He was supposed to be gone only for six months — it would take him
               an entire year to find his way back to Kampala.
             </p>
@@ -365,8 +407,10 @@
       <figure>
         <img
           loading="lazy"
-          src="https://images.theconversation.com/files/611346/original/file-20240805-17-7z4xwb.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
+          data-path="files/611346/original/file-20240805-17-7z4xwb.jpg"
           alt=""
+          data-params="{}"
+          sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
         />
         <figcaption>
           Towering apartment blocks in scam-centres around Sihanoukville are
@@ -392,8 +436,10 @@
       <figure>
         <img
           loading="lazy"
-          src="https://images.theconversation.com/files/611350/original/file-20240805-21-8bzb4w.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
+          data-path="files/611350/original/file-20240805-21-8bzb4w.jpg"
           alt=""
+          data-params="{}"
+          sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
         />
         <figcaption>
           Apartment blocks are used to house and trap workers.
@@ -458,98 +504,268 @@
         to get people out of the compounds and shut them down.
       </p>
 
-      <section
-        class="drone_shots pinned_section pin_clipped not-prose bg-black text-lg md:text-xl"
-      >
+      <section class="drone_shots pinned_section pin_clipped not-prose">
         <div class="pinned_background">
           <div class="pinned_background_wrapper">
-            <img
-              class="absolute h-screen w-screen object-cover object-[50%_0%] sm:object-[50%_0%]"
-              src="https://images.theconversation.com/files/611349/original/file-20240805-17-1jy5jj.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/611364/original/file-20240805-23-k0j0lp.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/611285/original/file-20240805-17-3p1v0i.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/611280/original/file-20240805-17-pcsf6m.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/611352/original/file-20240805-17-lxen1h.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
-            <img
-              class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
-              src="https://images.theconversation.com/files/611337/original/file-20240805-19-oef0wz.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000&dpr=2"
-              alt=""
-            />
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":2000}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":2500}'
+              />
+
+              <img
+                class="absolute h-screen w-screen object-cover object-[50%_50%] sm:object-[50%_50%]"
+                data-path="files/611349/original/file-20240805-17-1jy5jj.jpg"
+                alt=""
+              />
+            </picture>
+
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611364/original/file-20240805-23-k0j0lp.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611364/original/file-20240805-23-k0j0lp.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611364/original/file-20240805-23-k0j0lp.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611364/original/file-20240805-23-k0j0lp.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/611364/original/file-20240805-23-k0j0lp.jpg"
+                alt=""
+              />
+            </picture>
+
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611285/original/file-20240805-17-3p1v0i.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10, "max-w":100}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611285/original/file-20240805-17-3p1v0i.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20, "max-w":100}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611285/original/file-20240805-17-3p1v0i.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":100}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611285/original/file-20240805-17-3p1v0i.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":100}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/611285/original/file-20240805-17-3p1v0i.jpg"
+                alt=""
+              />
+            </picture>
+
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611280/original/file-20240805-17-pcsf6m.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611280/original/file-20240805-17-pcsf6m.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611280/original/file-20240805-17-pcsf6m.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611280/original/file-20240805-17-pcsf6m.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/611280/original/file-20240805-17-pcsf6m.jpg"
+                alt=""
+              />
+            </picture>
+
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611352/original/file-20240805-17-lxen1h.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611352/original/file-20240805-17-lxen1h.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611352/original/file-20240805-17-lxen1h.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611352/original/file-20240805-17-lxen1h.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/611352/original/file-20240805-17-lxen1h.jpg"
+                alt=""
+              />
+            </picture>
+            <picture>
+              <!-- Mobile crop -->
+              <source
+                media="(max-width: 699px)"
+                sizes="100vw"
+                data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
+                data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+              />
+              <!-- Tablet & large mobile crop -->
+
+              <source
+                media="(min-width: 700px) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
+                data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+              />
+              <!-- Laptop crop -->
+              <source
+                media="(orientation: landscape) and (max-width: 979px)"
+                sizes="100vw"
+                data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+              />
+              <!-- Desktop & larger crop -->
+              <source
+                media="(min-width: 1800px)"
+                sizes="100vw"
+                data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
+                data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+              />
+
+              <img
+                loading="lazy"
+                class="absolute left-0 top-0 h-screen w-screen object-cover object-[65%_0%] opacity-0 transition-opacity duration-[0.8s] ease-in-out"
+                data-path="files/611337/original/file-20240805-19-oef0wz.jpg"
+                alt=""
+              />
+            </picture>
           </div>
         </div>
-        <div class="pinned_foreground standard_width text-white">
-          <div
-            class="pointer-events-none mt-[30vh] flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="pointer-events-auto mx-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+        <div class="pinned_foreground standard_width">
+          <div class="chapter_wrapper chapter_center mt-[30vh]">
+            <p>
               Because the compounds are strictly off-limits to the public, we
               hired a photographer in 2022 to shoot aerial images from drones.
             </p>
           </div>
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">
               Luckily, this trip to Sihanoukville, a Cambodian coastal city,
               coincided with a short-lived government crackdown on the industry.
             </p>
           </div>
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">
               The relative quiet allowed us access to places where scammers had
               once operated.
             </p>
           </div>
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
-              The images revealed scenes of normality...
-            </p>
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">The images revealed scenes of normality...</p>
           </div>
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
-              as well as the enormous scale of the industry.
-            </p>
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">as well as the enormous scale of the industry.</p>
           </div>
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">
               Finally, we’ve also accumulated a wealth of data through years of
               observing the power networks and money flows that underpin the
               industry. It was surprising to us how much information was out
@@ -574,8 +790,10 @@
       <figure>
         <img
           loading="lazy"
-          src="https://images.theconversation.com/files/611308/original/file-20240805-19-pv3hzl.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
+          data-path="files/611308/original/file-20240805-19-pv3hzl.jpg"
           alt=""
+          data-params="{}"
+          sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
         />
         <figcaption>
           Flashy hotels and casinos were hastily erected around Sihanoukville,
@@ -600,8 +818,10 @@
       <figure>
         <img
           loading="lazy"
-          src="https://images.theconversation.com/files/611303/original/file-20240805-17-dnyfy9.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
+          data-path="files/611303/original/file-20240805-17-dnyfy9.jpg"
           alt=""
+          data-params="{}"
+          sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
         />
         <figcaption>
           Sihanoukville was a hub for Chinese-run casinos until 2019 when
@@ -625,8 +845,10 @@
       <figure>
         <img
           loading="lazy"
-          src="https://images.theconversation.com/files/611322/original/file-20240805-21-60yutc.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
+          data-path="files/611322/original/file-20240805-21-60yutc.jpg"
           alt=""
+          data-params="{}"
+          sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
         />
         <figcaption>
           Some locals have been forced to live shanty-town style encampments in
@@ -647,46 +869,165 @@
         tens of thousands of Chinese workers and shielding wanted fugitives.
       </p>
 
-      <section
-        class="not-prose pinned_section pin_clipped kk_park not-prose mb-8 bg-black text-lg md:text-xl"
-      >
+      <section class="kk_park not-prose pinned_section pin_clipped">
         <div class="pinned_background">
           <div class="pinned_background_wrapper kk_park_sat_wrapper">
             <figure class="full_screen_media">
               <picture>
+                <!-- Mobile crop -->
+                <source
+                  media="(max-width: 699px)"
+                  sizes="100vw"
+                  data-path="files/620354/original/file-20240919-16-ldw6ce.jpg"
+                  data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+                />
+                <!-- Tablet & large mobile crop -->
+
+                <source
+                  media="(min-width: 700px) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620354/original/file-20240919-16-ldw6ce.jpg"
+                  data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+                />
+                <!-- Laptop crop -->
+                <source
+                  media="(orientation: landscape) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620354/original/file-20240919-16-ldw6ce.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+                />
+                <!-- Desktop & larger crop -->
+                <source
+                  media="(min-width: 1800px)"
+                  sizes="100vw"
+                  data-path="files/620354/original/file-20240919-16-ldw6ce.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+                />
+
                 <img
                   class="absolute h-screen w-full object-cover"
-                  src="https://images.theconversation.com/files/620354/original/file-20240919-16-ldw6ce.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000dpr=2"
+                  data-path="files/620354/original/file-20240919-16-ldw6ce.jpg"
                   alt=""
                 />
               </picture>
             </figure>
             <figure class="full_screen_media opacity-0">
               <picture>
-                <img
-                  class="absolute h-screen w-full object-cover"
-                  src="https://images.theconversation.com/files/620352/original/file-20240919-18-fok5ns.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000dpr=2"
-                  alt=""
+                <!-- Mobile crop -->
+                <source
+                  media="(max-width: 699px)"
+                  sizes="100vw"
+                  data-path="files/620352/original/file-20240919-18-fok5ns.jpg"
+                  data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
                 />
-              </picture>
-            </figure>
-            <figure class="full_screen_media opacity-0">
-              <picture>
+                <!-- Tablet & large mobile crop -->
+
+                <source
+                  media="(min-width: 700px) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620352/original/file-20240919-18-fok5ns.jpg"
+                  data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+                />
+                <!-- Laptop crop -->
+                <source
+                  media="(orientation: landscape) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620352/original/file-20240919-18-fok5ns.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+                />
+                <!-- Desktop & larger crop -->
+                <source
+                  media="(min-width: 1800px)"
+                  sizes="100vw"
+                  data-path="files/620352/original/file-20240919-18-fok5ns.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+                />
+
                 <img
-                  class="absolute h-screen w-full object-cover"
                   loading="lazy"
-                  src="https://images.theconversation.com/files/620353/original/file-20240919-24-lnxbrf.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000dpr=2"
+                  class="absolute h-screen w-full object-cover"
+                  data-path="files/620352/original/file-20240919-18-fok5ns.jpg"
+                  alt=""
+                />
+              </picture>
+            </figure>
+            <figure class="full_screen_media opacity-0">
+              <picture>
+                <!-- Mobile crop -->
+                <source
+                  media="(max-width: 699px)"
+                  sizes="100vw"
+                  data-path="files/620353/original/file-20240919-24-lnxbrf.jpg"
+                  data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+                />
+                <!-- Tablet & large mobile crop -->
+
+                <source
+                  media="(min-width: 700px) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620353/original/file-20240919-24-lnxbrf.jpg"
+                  data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+                />
+                <!-- Laptop crop -->
+                <source
+                  media="(orientation: landscape) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620353/original/file-20240919-24-lnxbrf.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+                />
+                <!-- Desktop & larger crop -->
+                <source
+                  media="(min-width: 1800px)"
+                  sizes="100vw"
+                  data-path="files/620353/original/file-20240919-24-lnxbrf.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+                />
+
+                <img
+                  loading="lazy"
+                  class="absolute h-screen w-full object-cover"
+                  data-path="files/620353/original/file-20240919-24-lnxbrf.jpg"
                   alt=""
                 />
               </picture>
             </figure>
 
             <figure class="full_screen_media relative opacity-0">
-              <picture class="">
+              <picture>
+                <!-- Mobile crop -->
+                <source
+                  media="(max-width: 699px)"
+                  sizes="100vw"
+                  data-path="files/620357/original/file-20240919-22-ia379a.jpg"
+                  data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+                />
+                <!-- Tablet & large mobile crop -->
+
+                <source
+                  media="(min-width: 700px) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620357/original/file-20240919-22-ia379a.jpg"
+                  data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+                />
+                <!-- Laptop crop -->
+                <source
+                  media="(orientation: landscape) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620357/original/file-20240919-22-ia379a.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+                />
+                <!-- Desktop & larger crop -->
+                <source
+                  media="(min-width: 1800px)"
+                  sizes="100vw"
+                  data-path="files/620357/original/file-20240919-22-ia379a.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+                />
+
                 <img
-                  class="absolute h-screen w-full object-cover"
                   loading="lazy"
-                  src="https://images.theconversation.com/files/620357/original/file-20240919-22-ia379a.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000dpr=2"
+                  class="absolute h-screen w-full object-cover"
+                  data-path="files/620357/original/file-20240919-22-ia379a.jpg"
                   alt=""
                 />
               </picture>
@@ -694,73 +1035,80 @@
 
             <figure class="full_screen_media opacity-0">
               <picture>
+                <!-- Mobile crop -->
+                <source
+                  media="(max-width: 699px)"
+                  sizes="100vw"
+                  data-path="files/620356/original/file-20240919-18-iur8r5.jpg"
+                  data-params='{"ar": "9:16","fp-x": 0.1,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 3,"q": 10,"max-w":800}'
+                />
+                <!-- Tablet & large mobile crop -->
+
+                <source
+                  media="(min-width: 700px) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620356/original/file-20240919-18-iur8r5.jpg"
+                  data-params='{"ar": "4:3","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","fit": "crop","dpr": 2,"q": 20,"max-w":1200}'
+                />
+                <!-- Laptop crop -->
+                <source
+                  media="(orientation: landscape) and (max-width: 979px)"
+                  sizes="100vw"
+                  data-path="files/620356/original/file-20240919-18-iur8r5.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1500}'
+                />
+                <!-- Desktop & larger crop -->
+                <source
+                  media="(min-width: 1800px)"
+                  sizes="100vw"
+                  data-path="files/620356/original/file-20240919-18-iur8r5.jpg"
+                  data-params='{"ar": "16:9","fp-x": 0.5,"fp-y": 0.5,"crop": "focalpoint","dpr": 1,"q": 20,"max-w":1800}'
+                />
+
                 <img
-                  class="absolute h-screen w-full object-cover"
                   loading="lazy"
-                  src="https://images.theconversation.com/files/620356/original/file-20240919-18-iur8r5.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=2000dpr=2"
+                  class="absolute h-screen w-full object-cover"
+                  data-path="files/620356/original/file-20240919-18-iur8r5.jpg"
                   alt=""
                 />
               </picture>
             </figure>
           </div>
         </div>
-        <div class="pinned_foreground standard_width text-white">
-          <div
-            class="pointer-events-none mt-[40vh] flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+        <div class="pinned_foreground standard_width">
+          <div class="chapter_wrapper chapter_center mt-[40vh]">
+            <p>
               The growth of the KK Park scam compound on the Myanmar-Thailand
               border is illustrative of how quickly the industry has grown.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">
               As recently as October 2019, satellite images show the area to be
               agricultural land.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
-              Construction began soon after.
-            </p>
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">Construction began soon after.</p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center md:mx-0 md:ml-auto md:w-1/2 md:text-right"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step md:mx-0 md:ml-auto md:w-1/2 md:text-right">
               In just a few years, the area became one of Myanmar’s most
               notorious scam compounds.
             </p>
           </div>
 
-          <div
-            class="pointer-events-none flex h-screen w-full items-center md:max-w-[70%]"
-          >
-            <p
-              class="step pointer-events-auto mx-auto w-auto rounded-sm bg-[rgba(0,0,0,0.6)] p-5 text-center"
-            >
+          <div class="chapter_wrapper chapter_center">
+            <p class="step">
               As of early 2024, KK Park and other adjacent compounds covered
               some 7.5 square kilometres of land.
             </p>
           </div>
         </div>
       </section>
-
       <p>
         The sheer size of the industry makes it difficult to assess exactly how
         many compounds exist in the region in total. Through our monitoring of
@@ -1000,11 +1348,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>9:56 am</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1035,11 +1386,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>9:57 am</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1063,11 +1417,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>9:57 am</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1091,11 +1448,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:01 am</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1148,8 +1508,10 @@
           <img
             loading="lazy"
             class="mb-4 rounded-md"
-            src="https://images.theconversation.com/files/617505/original/file-20240905-18-tggyau.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=500"
+            data-path="files/617505/original/file-20240905-18-tggyau.jpg"
             alt=""
+            data-params="{}"
+            sizes="(max-width: 599px) 100vw, (min-width: 600px) 500px, 500px"
           />
           <div
             class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
@@ -1203,11 +1565,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:22 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1241,11 +1606,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:23 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1300,11 +1668,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:24 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1351,11 +1722,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>1:20 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1376,11 +1750,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:22 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1405,10 +1782,12 @@
             >
               <p>10:23 pm</p>
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1423,6 +1802,7 @@
               <p>10:23 pm</p>
             </div>
           </div>
+
           <div
             class="message_bubble message_bubble_left relative mb-2 mr-auto rounded-b-lg rounded-r-lg bg-neutral-50 p-3 pb-5 text-neutral-900 drop-shadow-lg"
           >
@@ -1438,20 +1818,25 @@
             class="message_bubble message_bubble_right relative my-4 ml-auto rounded-b-lg rounded-l-lg bg-[#e2ffc7] p-3 pb-5 text-neutral-900 drop-shadow-lg"
           >
             <img
-              loading="lazy"
               class="mb-4 rounded-md"
-              src="https://images.theconversation.com/files/617433/original/file-20240905-20-r0bpnm.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=500"
+              loading="lazy"
+              data-path="files/617433/original/file-20240905-20-r0bpnm.jpg"
               alt=""
+              data-params="{}"
+              sizes="(max-width: 599px) 100vw, (min-width: 600px) 500px, 500px"
             />
             <div
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:23 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1464,11 +1849,14 @@
               class="absolute bottom-1 right-2 flex gap-1 text-sm text-neutral-400"
             >
               <p>10:23 pm</p>
+
               <img
-                loading="lazy"
                 class="inline w-5"
-                src="https://images.theconversation.com/files/617201/original/file-20240904-16-xvj31z.png"
+                loading="lazy"
+                data-path="files/617201/original/file-20240904-16-xvj31z.png"
                 alt=""
+                data-params="{}"
+                sizes="(max-width: 599px) 100px, (min-width: 600px) 100px, 100px"
               />
             </div>
           </div>
@@ -1518,10 +1906,11 @@
           class="not-prose scramble_wrapper relative h-full w-full text-xs md:text-lg"
         >
           <img
-            class=""
             loading="lazy"
-            src="https://images.theconversation.com/files/620411/original/file-20240919-16-tzhkq1.png?ixlib=rb-4.1.0&q=45&auto=format&w=800fit=crop&dpr=1"
+            data-path="files/620411/original/file-20240919-16-tzhkq1.png"
             alt=""
+            data-params="{}"
+            sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
           />
           <div class="absolute left-[5%] top-[5%] w-[80%]">
             <span id="scramble1" class="bg-neutral-900"></span>
@@ -1582,11 +1971,15 @@
       <figure class="relative">
         <div class="relative overflow-hidden">
           <img
-            class="blurred m-0"
             id="sensitiveImg"
+            class="blurred m-0"
             loading="lazy"
-            src="https://images.theconversation.com/files/617500/original/file-20240905-20-iyvu7b.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr="
+            data-path="files/617500/original/file-20240905-20-iyvu7b.jpg"
+            alt=""
+            data-params="{}"
+            sizes="(max-width: 599px) 100vw, (min-width: 600px) 750px, 750px"
           />
+
           <div
             id="sensitiveWarning"
             class="absolute top-0 mx-auto grid h-full w-full cursor-pointer place-items-center text-center transition-opacity duration-300"
@@ -1615,17 +2008,6 @@
         A video was sent to her family with a demand for a ransom of 5 million
         yuan (A$1 million). She was later rescued by local police.
       </p>
-      <!-- <figure>
-        <img
-          loading="lazy"
-          src="https://images.theconversation.com/files/617501/original/file-20240905-18-kvxhfz.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1000&dpr=1"
-          alt=""
-        />
-        <figcaption>
-          Text messages between the kidnappers and the mother of the victim.
-          <span>(Author supplied)</span>
-        </figcaption>
-      </figure> -->
 
       <h2>Going global</h2>
       <p>
@@ -1670,6 +2052,8 @@
             well as monitoring the digital footprint of these scam centres.
           </p>
         </div>
+
+        <!-- Authors & Editors -->
         <div class="grid gap-0 sm:grid-cols-2 sm:gap-8">
           <!-- Authors -->
           <div>
@@ -1681,6 +2065,7 @@
                   href="https://theconversation.com/profiles/ivan-franceschini-1529038"
                 >
                   <img
+                    alt=""
                     class="not-prose float-left mb-5 mr-4 block w-12 rounded-full"
                     src="https://cdn.theconversation.com/avatars/1529038/width238/getimage_345eee4d-e639-4cfa-8991-492b0459f47a.jpg"
                   />
@@ -1703,6 +2088,7 @@
                   href="https://theconversation.com/profiles/ling-li-1529042"
                 >
                   <img
+                    alt=""
                     class="not-prose float-left mb-5 mr-4 mt-0 block w-12 rounded-full"
                     src="https://cdn.theconversation.com/avatars/1509027/width238/image-20240207-26-m2wwov.jpg"
                   />
@@ -1731,6 +2117,7 @@
                   href="https://theconversation.com/profiles/signe-dean-1366025"
                 >
                   <img
+                    alt=""
                     class="not-prose float-left mb-5 mr-4 mt-0 block w-12 rounded-full"
                     src="https://cdn.theconversation.com/avatars/470587/width238/image-20191027-113962-mmopio.jpg"
                   />
@@ -1748,6 +2135,7 @@
                   href="https://theconversation.com/profiles/matt-garrow-1474685"
                 >
                   <img
+                    alt=""
                     class="not-prose float-left mb-5 mr-4 mt-0 block w-12 rounded-full"
                     src="https://cdn.theconversation.com/avatars/1474685/width238/image-20231004-24-92az11.jpg"
                   />
